@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/logo-natalcap.png">
+  <meta name="description" content="Natal Cap - Sua sorte ajuda quem precisa. Títulos de capitalização que beneficiam o Hospital Varela Santiago.">
+  <title>Natal Cap - Sua sorte ajuda quem precisa</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script/main.js"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Figtree', sans-serif; }
+
+    /* Animations */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-in-right { opacity: 0; transform: translateX(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+    .scale-in { opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+
+    .btn-primary { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(219, 21, 38, 0.3); }
+
+    .glass { backdrop-filter: blur(21.9px); -webkit-backdrop-filter: blur(21.9px); background: rgba(255, 255, 255, 0.17); border: 1px solid rgba(255, 255, 255, 0); }
+    .glass-card { backdrop-filter: blur(14.5px); -webkit-backdrop-filter: blur(14.5px); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(166, 163, 163, 0); }
+    .gradient-line { background: linear-gradient(90deg, #dc2626, #fde047 50%, #dc2626); }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-text-body overflow-x-hidden">
+
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative flex flex-col items-center pb-24 pt-[6px] lg:pt-2 px-4">
+      <!-- Header -->
+      <header class="z-10 mt-6 mb-6 w-[1000px] max-w-full hidden lg:block">
+        <nav class="mx-auto flex items-center justify-center w-full">
+          <div class="glass rounded-full px-8 py-5 flex items-center justify-between gap-6 w-full max-w-full">
+            <ul class="flex items-center gap-2">
+              <li><a href="index.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Início</a></li>
+              <li><a href="resultados.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Resultados</a></li>
+              <li><a href="ganhadores.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Ganhadores</a></li>
+            </ul>
+
+            <span class="w-[118px] relative">
+              <a href="index.html">
+                <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[118px] top-[-30px] fixed">
+              </a>
+            </span>
+
+            <ul class="flex items-center gap-2">
+              <li><a href="regulamento.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Regulamento</a></li>
+              <li><a href="#comprar" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Comprar</a></li>
+              <li><a href="contato.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Contato</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Header Mobile -->
+      <header class="z-10 mb-[-6px] flex items-center justify-center lg:hidden w-full relative">
+
+        <a href="index.html" class="glass rounded-full p-1.5 flex items-center justify-center">
+          <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[60px] h-[61px] object-contain">
+        </a>
+
+        <button id="mobile-menu-toggle" class="glass rounded-full p-[5px] flex items-center justify-center absolute right-2">
+          <img src="images/icons/align-justify.svg" alt="Menu" class="w-[22px] h-[22px]">
+        </button>
+      </header>
+
+      <img src="images/home/home-hero-bg-mobile.png" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none md:hidden">
+      <img src="images/home/home-hero-bg-desktop.png" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none hidden md:block">
+
+      <div class="relative w-full max-w-[1216px] mx-auto lg:px-0">
+        <div class="scale-in w-full rounded-[32px] shadow-2xl overflow-hidden">
+          <img src="images/home/home-hero-image-mobile.png" alt="Natal Cap - Sua sorte ajuda quem precisa" class="w-full h-full object-cover lg:hidden">
+          <img src="images/home/home-hero-image-desktop.png" alt="Natal Cap - Sua sorte ajuda quem precisa" class="w-full h-full object-cover hidden lg:block">
+        </div>
+      </div>
+    </section>
+
+    <div class="h-1 gradient-line w-full"></div>
+
+    <!-- Seção Instituição Beneficiada -->
+    <section class="bg-white py-16 lg:py-24 px-6 lg:px-[112px]">
+      <div class="max-w-[1216px] mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+
+        <!-- Imagem (mobile: primeiro) -->
+        <div class="relative w-full lg:hidden">
+          <div class="w-full h-[272px] rounded-3xl overflow-hidden">
+            <img src="images/home/institucional-thumb.jpg" alt="Hospital Varela Santiago" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Card Glass com Logo -->
+          <div class="absolute left-[-8px] top-1/2 -translate-y-1/2 w-[158px] h-[104px] glass rounded-xl p-3 flex items-center justify-center">
+            <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Infantil Varela Santiago" class="max-w-full max-h-full object-contain">
+          </div>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="flex flex-col gap-8 lg:w-[481px]">
+          <div class="w-[34px] h-1 bg-secondary rounded-full"></div>
+          <div class="flex flex-col gap-4">
+            <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-text-heading">Sua sorte ajuda<br>quem precisa</h2>
+            <p class="text-lg font-medium text-text-body leading-[1.6]">Ao adquirir o Natal Cap, você contribui diretamente com o Hospital Varela Santiago. Parte do valor do seu título é revertido para custear tratamentos infantis.</p>
+          </div>
+          <a href="#" class="inline-flex items-center gap-3 text-primary font-semibold hover:gap-4 transition-all">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 13L13 5M13 5H5M13 5V13"/>
+            </svg>
+            <span>Conheça a instituição</span>
+          </a>
+        </div>
+
+        <!-- Imagem (desktop) -->
+        <div class="relative hidden lg:block w-[590px] h-[426px]">
+          <div class="w-full h-full rounded-3xl overflow-hidden">
+            <img src="images/home/institucional-thumb.jpg" alt="Hospital Varela Santiago" class="w-full h-full object-cover">
+          </div>
+          <!-- Card Glass com Logo -->
+          <div class="absolute left-[-43px] top-1/2 -translate-y-1/2 w-[248px] h-[162px] glass rounded-[20px] p-5 flex items-center justify-center border-2 border-transparent">
+            <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Infantil Varela Santiago" class="max-w-full max-h-full object-contain">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção Ao Vivo - Todo Domingo -->
+    <section class="bg-white py-16 pt-0 lg:py-24 lg:pt-0 px-6 lg:px-[112px]">
+      <div class="max-w-[1216px] mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+
+        <!-- Vídeo/Imagem -->
+        <div class="relative w-full lg:w-[590px] aspect-video rounded-[20px] lg:rounded-[32px] overflow-hidden shrink-0 bg-gray-200">
+          <img src="images/home/ao-vivo-thumb.png" alt="Sorteio ao vivo" class="w-full h-full object-cover">
+          <!-- Play Button -->
+          <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[94px] lg:h-[94px] glass rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <svg class="w-6 h-6 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="flex flex-col gap-8 lg:w-[481px]">
+          <div class="w-[34px] h-1 bg-secondary rounded-full"></div>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-0">
+              <!-- Ao Vivo -->
+              <div class="flex items-center gap-2">
+                <svg class="w-8 h-8 text-primary" viewBox="0 0 32 32" fill="none">
+                  <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                  <path d="M8 8C5.8 10.2 4.5 13 4.5 16s1.3 5.8 3.5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M24 8c2.2 2.2 3.5 5 3.5 8s-1.3 5.8-3.5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M11 11c-1.3 1.3-2 3-2 5s.7 3.7 2 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M21 11c1.3 1.3 2 3 2 5s-.7 3.7-2 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="text-primary font-bold text-lg">AO VIVO</span>
+              </div>
+              <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-text-heading">TODO DOMINGO</h2>
+            </div>
+            <p class="text-lg font-medium text-[#797979] leading-[1.6]">
+              Sorteios transmitidos todos os <span class="text-[#202020]">Domingos às 09h00</span> na <span class="text-[#202020]">TV Ponta Negra</span> e toda a rede de transmissão do Natal Cap.
+            </p>
+          </div>
+
+          <!-- Rede de Transmissão -->
+          <div class="flex flex-col items-center w-full max-w-[371px]">
+            <div class="bg-primary rounded-xl w-full h-[56px] flex items-center justify-center mb-[-9px] relative z-10">
+              <span class="text-white font-semibold text-lg">Rede de Transmissão do Natal Cap</span>
+            </div>
+            <div class="flex gap-[5px] items-center relative z-20">
+              <div class="w-[81px] h-[81px] p-3 flex items-center justify-center" style="border-radius: 13.532px; border: 1px solid rgba(166, 163, 163, 0.00); background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(14.55px); -webkit-backdrop-filter: blur(14.55px);">
+                <img src="images/shared/tv-ponta-negra-logo.png" alt="TV Ponta Negra" class="max-w-full max-h-full object-contain">
+              </div>
+              <div class="w-[81px] h-[81px] p-3 flex items-center justify-center" style="border-radius: 13.532px; border: 1px solid rgba(166, 163, 163, 0.00); background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(14.55px); -webkit-backdrop-filter: blur(14.55px);">
+                <img src="images/shared/tv-tropical.png" alt="TV Tropical" class="max-w-full max-h-full object-contain">
+              </div>
+              <div class="w-[81px] h-[81px] p-3 flex items-center justify-center" style="border-radius: 13.532px; border: 1px solid rgba(166, 163, 163, 0.00); background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(14.55px); -webkit-backdrop-filter: blur(14.55px);">
+                <img src="images/shared/mais-fm-logo.png" alt="95 Mais FM" class="max-w-full max-h-full object-contain">
+              </div>
+              <div class="w-[81px] h-[81px] p-3 flex items-center justify-center" style="border-radius: 13.532px; border: 1px solid rgba(166, 163, 163, 0.00); background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(14.55px); -webkit-backdrop-filter: blur(14.55px);">
+                <img src="images/shared/telepesquisa-logo.png" alt="Telepesquisa" class="max-w-full max-h-full object-contain">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Seção Premiação e Ganhadores -->
+  <section class="relative py-16 lg:py-24 px-6 lg:px-[112px] overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 pointer-events-none">
+      <img src="images/home/home-winners-bg.png" alt="" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-secondary/60"></div>
+    </div>
+
+    <div class="relative max-w-[1216px] mx-auto flex flex-col gap-12 items-center">
+      <!-- Header -->
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 w-full">
+        <h2 class="text-[28px] lg:text-[36px] font-bold leading-[1.3] text-text-heading lg:w-[405px]">Premiação e ganhadores</h2>
+        <div class="flex flex-col gap-4 lg:w-[340px]">
+          <div class="w-[34px] h-1 bg-primary rounded-full"></div>
+          <p class="text-base lg:text-lg text-text-heading leading-[1.6]">Veja a premiação da semana e quem já mudou de vida comprando o Natal Cap.</p>
+        </div>
+      </div>
+
+      <!-- Cards de Vídeo -->
+      <div class="flex flex-col lg:flex-row gap-6 lg:gap-9 w-full">
+        <!-- Card Premiação -->
+        <div class="relative flex-1 aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl bg-gray-700">
+          <img src="images/home/premiacao-thumbnail.png" alt="Premiação" class="absolute inset-0 w-full h-full object-cover">
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50"></div>
+          <!-- Play Button -->
+          <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] lg:w-[94px] lg:h-[94px] glass rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <svg class="w-8 h-8 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+          <!-- Caption Glass -->
+          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass rounded-[20px] p-5 flex items-center justify-between">
+            <span class="text-white font-bold text-sm lg:text-lg">Premiação - Sorteio do dia 11/01</span>
+            <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] text-white" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 13L13 5M13 5H5M13 5V13"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card Ganhadores -->
+        <div class="relative flex-1 aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl bg-gray-700">
+          <img src="images/home/ganhadores-thumbnail.png" alt="Ganhadores" class="absolute inset-0 w-full h-full object-cover">
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50"></div>
+          <!-- Play Button -->
+          <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] lg:w-[94px] lg:h-[94px] glass rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <svg class="w-8 h-8 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+          <!-- Caption Glass -->
+          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass rounded-[20px] p-5 flex items-center justify-between">
+            <span class="text-white font-bold text-sm lg:text-lg">Ganhadores do Sorteio | Dia 14/12</span>
+            <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] text-white" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 13L13 5M13 5H5M13 5V13"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão CTA -->
+      <a href="ganhadores.html" class="btn-primary bg-primary border border-primary rounded-full pl-6 pr-2 py-2 h-[60px] inline-flex items-center gap-3.5 text-white font-semibold text-lg">
+        Veja todos os ganhadores
+        <span class="bg-white rounded-full p-4 flex items-center justify-center">
+          <svg class="w-[18px] h-[18px] text-text-heading" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 13L13 5M13 5H5M13 5V13"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Seção Vídeo PIX -->
+  <section class="py-16 lg:py-24 px-6 lg:px-[112px] bg-white">
+    <div class="max-w-[1216px] mx-auto flex flex-col gap-12">
+      <!-- Vídeo + Texto -->
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-[76px] items-center">
+        <!-- Thumbnail do Vídeo -->
+        <div class="relative w-full lg:w-[590px] aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shrink-0 bg-gray-700">
+          <img src="images/home/video-pix-thumbnail.png" alt="Como comprar via PIX" class="w-full h-full object-cover">
+          <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[62px] h-[62px] lg:w-[94px] lg:h-[94px] glass rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <svg class="w-7 h-7 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="flex flex-col gap-8 w-full lg:w-[447px]">
+          <div class="w-[34px] h-1 bg-secondary rounded-full hidden lg:block"></div>
+          <div class="flex flex-col gap-2 lg:gap-4">
+            <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-text-heading">Veja como comprar seu Natal Cap via PIX!</h2>
+            <p class="text-lg text-text-body leading-[1.6]">É muito fácil, rápido e seguro. Em menos de 2 minutos você garante sua chance de mudar de vida!</p>
+          </div>
+          <a href="#" class="btn-primary bg-primary border border-primary rounded-full pl-6 pr-2 py-2 h-[60px] inline-flex items-center gap-3.5 w-fit text-white font-semibold text-lg">
+            Assista ao vídeo
+            <span class="bg-white rounded-full p-4 flex items-center justify-center">
+              <svg class="w-[18px] h-[18px] text-primary" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <!-- Card Meus Títulos -->
+        <div class="flex-1 rounded-2xl lg:rounded-3xl overflow-hidden pl-6 lg:pl-11 py-8 lg:py-0 flex items-center" style="background: linear-gradient(148deg, #FCC200 39.74%, #FC9700 100%);">
+          <div class="flex flex-col gap-4 lg:gap-8 w-[194px] lg:w-[314px] shrink-0">
+            <div class="flex flex-col gap-1 lg:gap-2">
+              <h3 class="text-2xl lg:text-[28px] font-bold leading-[1.3] text-text-heading">Meus títulos</h3>
+              <p class="text-sm lg:text-lg text-text-heading leading-[1.4] lg:leading-[1.6]">Lorem ipsum dolor sit amet conjecture adicpline elit</p>
+            </div>
+            <a href="#" class="btn-primary bg-primary border border-primary rounded-full pl-3 lg:pl-6 pr-2 lg:pr-2.5 py-2 h-auto lg:h-[60px] inline-flex items-center gap-2 lg:gap-3.5 w-fit text-white font-semibold text-sm lg:text-lg">
+              Saibas mais
+              <span class="bg-white rounded-full p-2 lg:p-4 flex items-center justify-center">
+                <svg class="w-[9px] h-[9px] lg:w-[18px] lg:h-[18px] text-text-heading" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 13L13 5M13 5H5M13 5V13"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="relative w-[117px] lg:w-[290px] h-[131px] lg:h-[325px] overflow-hidden shrink-0 ml-auto">
+            <img src="images/home/meus-titulos-image.png" alt="Meus títulos" class="absolute left-0 top-1/2 -translate-y-1/2 w-auto h-[250px] lg:h-[394px] -rotate-[15deg] object-contain">
+          </div>
+        </div>
+
+        <!-- Card Regulamento -->
+        <div class="flex-1 rounded-2xl lg:rounded-3xl overflow-hidden pl-6 lg:pl-11 py-8 lg:py-0 flex items-center" style="background: linear-gradient(113deg, #DB1526 52.46%, #8A0900 100%);">
+          <div class="flex flex-col gap-4 lg:gap-8 w-[194px] lg:w-[314px] shrink-0">
+            <div class="flex flex-col gap-1 lg:gap-2">
+              <h3 class="text-2xl lg:text-[28px] font-bold leading-[1.3] text-white">Regulamento</h3>
+              <p class="text-sm lg:text-lg text-white leading-[1.4] lg:leading-[1.6]">Confira o regulamento dos sorteios do Natal Cap</p>
+            </div>
+            <a href="regulamento.html" class="btn-primary rounded-full pl-3 lg:pl-6 pr-2 lg:pr-2.5 py-2 h-auto lg:h-[60px] inline-flex items-center gap-2 lg:gap-3.5 w-fit text-text-heading font-semibold text-sm lg:text-lg" style="background: linear-gradient(90deg, #FCC200, #FC9E01);">
+              Saibas mais
+              <span class="bg-white rounded-full p-2 lg:p-4 flex items-center justify-center">
+                <svg class="w-[9px] h-[9px] lg:w-[18px] lg:h-[18px] text-text-heading" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 13L13 5M13 5H5M13 5V13"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="relative w-[117px] lg:w-[290px] h-[131px] lg:h-[325px] overflow-hidden shrink-0 ml-auto">
+            <img src="images/home/regulamento-image.png" alt="Regulamento" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-auto h-[200px] lg:h-[400px] object-contain">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA App Section -->
+  <section class="relative py-[72px] lg:py-24 px-6 lg:px-[112px] overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <img src="images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-primary/60"></div>
+    </div>
+    <div class="relative max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-8">
+      <!-- Imagem (mobile: primeiro, desktop: último) -->
+      <div class="w-full lg:hidden rounded-2xl overflow-hidden bg-gray-700">
+        <img src="images/home/home-cta-app-image.png" alt="Aplicativo Natal Cap" class="w-full h-auto object-cover">
+      </div>
+
+      <!-- Conteúdo -->
+      <div class="flex-1 flex flex-col gap-6 lg:gap-10">
+        <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white max-w-[284px] lg:max-w-none">Compre também pelo aplicativo do Natal Cap!</h2>
+        <div class="flex gap-6">
+          <a href="#" class="bg-white rounded-lg px-6 py-4 flex items-center gap-2 hover:bg-gray-100 transition-colors">
+            <img src="images/shared/google-play-icon.png" alt="Google Play">
+          </a>
+          <a href="#" class="bg-white rounded-lg px-6 py-4 flex items-center gap-2 hover:bg-gray-100 transition-colors">
+            <img src="images/shared/apple-icon.png" alt="Apple Store">
+          </a>
+        </div>
+      </div>
+
+      <!-- Imagem (desktop: visível) -->
+      <div class="hidden lg:block w-[696px] h-[304px] rounded-3xl overflow-hidden bg-gray-700">
+        <img src="images/home/home-cta-app-image.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="h-1 gradient-line w-full"></div>
+
+  <footer class="bg-bg-light pt-16 px-4 md:px-8 lg:px-[112px] relative z-2">
+    <div class="max-w-[1216px] mx-auto">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
+        <div class="flex flex-wrap items-center gap-8 mx-auto lg:mx-0 text-center">
+          <div class="w-[180px] mt-[-96px] mx-auto lg:mx-0 bg-gray-700">
+            <img src="images/footer-titulo.png" alt="Natal Cap Título" class="w-full h-full object-cover object-top">
+          </div>
+
+          <div class="flex flex-col w-full lg:w-auto lg:flex-row gap-8 items-start justify-center">
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-text-body uppercase tracking-wider">Realização</span>
+              <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="h-[67px] w-auto">
+            </div>
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-text-body uppercase tracking-wider">Entidade Beneficiada</span>
+              <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Varela Santiago" class="h-[64px] w-auto">
+            </div>
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-text-body uppercase tracking-wider">Título emitido pela</span>
+              <div class="bg-white rounded-lg p-1">
+                <img src="images/logo-kovr.png" alt="KOVR" class="h-[55px] w-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-8 lg:mt-0 mx-auto lg:mx-0">
+          <a href="#" aria-label="Instagram" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-primary-dark transition-colors">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M11 5.5C8.24 5.5 6 7.74 6 10.5C6 13.26 8.24 15.5 11 15.5C13.76 15.5 16 13.26 16 10.5C16 7.74 13.76 5.5 11 5.5ZM11 13.5C9.34 13.5 8 12.16 8 10.5C8 8.84 9.34 7.5 11 7.5C12.66 7.5 14 8.84 14 10.5C14 12.16 12.66 13.5 11 13.5Z" fill="white"/><path d="M16.5 5.5C17.0523 5.5 17.5 5.05228 17.5 4.5C17.5 3.94772 17.0523 3.5 16.5 3.5C15.9477 3.5 15.5 3.94772 15.5 4.5C15.5 5.05228 15.9477 5.5 16.5 5.5Z" fill="white"/><path d="M19.5 1.5C18.5 0.5 17 0 15 0H7C5 0 3.5 0.5 2.5 1.5C1.5 2.5 1 4 1 6V15C1 17 1.5 18.5 2.5 19.5C3.5 20.5 5 21 7 21H15C17 21 18.5 20.5 19.5 19.5C20.5 18.5 21 17 21 15V6C21 4 20.5 2.5 19.5 1.5ZM19 15C19 16.5 18.5 17.5 18 18C17.5 18.5 16.5 19 15 19H7C5.5 19 4.5 18.5 4 18C3.5 17.5 3 16.5 3 15V6C3 4.5 3.5 3.5 4 3C4.5 2.5 5.5 2 7 2H15C16.5 2 17.5 2.5 18 3C18.5 3.5 19 4.5 19 6V15Z" fill="white"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-primary-dark transition-colors">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M12 21V11H15L15.5 7.5H12V5.5C12 4.5 12.5 3.5 14 3.5H15.5V0.5C15.5 0.5 14.2 0 13 0C10.5 0 9 1.5 9 4.5V7.5H5.5V11H9V21H12Z" fill="white"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-primary-dark transition-colors">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M21 6C20.9 4.5 20.5 3.5 19.5 2.8C18.5 2 17 2 11 2C5 2 3.5 2 2.5 2.8C1.5 3.5 1.1 4.5 1 6C0.9 7.5 0.9 9 0.9 10.5C0.9 12 0.9 13.5 1 15C1.1 16.5 1.5 17.5 2.5 18.2C3.5 19 5 19 11 19C17 19 18.5 19 19.5 18.2C20.5 17.5 20.9 16.5 21 15C21.1 13.5 21.1 12 21.1 10.5C21.1 9 21.1 7.5 21 6ZM9 14V7L14.5 10.5L9 14Z" fill="white"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-b border-border-light py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Navegação</h4>
+          <ul class="flex flex-col gap-2">
+            <li><a href="resultados.html" class="text-sm text-text-body hover:text-primary transition-colors">Resultados</a></li>
+            <li><a href="ganhadores.html" class="text-sm text-text-body hover:text-primary transition-colors">Ganhadores</a></li>
+            <li><a href="#comprar" class="text-sm text-text-body hover:text-primary transition-colors">Comprar Título</a></li>
+            <li><a href="#" class="text-sm text-text-body hover:text-primary transition-colors">Baixar App</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Legal</h4>
+          <ul class="flex flex-col gap-2">
+            <li><a href="#" class="text-sm text-text-body hover:text-primary transition-colors">Condições Gerais</a></li>
+            <li><a href="regulamento.html" class="text-sm text-text-body hover:text-primary transition-colors">Regulamento</a></li>
+            <li><a href="#" class="text-sm text-text-body hover:text-primary transition-colors">Política de Privacidade</a></li>
+            <li><a href="#" class="text-sm text-text-body hover:text-primary transition-colors">Termos de Uso</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Fale Conosco</h4>
+          <div class="flex flex-col gap-2">
+            <span class="text-sm text-text-body">Segunda a Sexta: 8h às 18h</span>
+            <span class="text-xl font-bold text-text-heading">(84) 3202-6000</span>
+            <a href="mailto:atendimento@natalcap.com.br" class="text-sm text-text-body hover:text-primary transition-colors">atendimento@natalcap.com.br</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Endereço</h4>
+          <div class="flex flex-col gap-3">
+            <span class="text-sm text-text-body">Av. Nilo Peçanha, 239 - Petrópolis - Natal/RN</span>
+            <a href="#" class="text-base font-semibold text-text-heading inline-flex items-center gap-2 hover:text-primary transition-colors">
+              Ver no mapa
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H3.5M8.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="py-6 flex flex-col gap-3">
+        <p class="text-sm font-bold text-primary">É proibida a venda de títulos de capitalização a menores de dezesseis anos.</p>
+        <p class="text-xs font-bold text-text-heading">VOCÊ PODE AJUDAR O HOSPITAL INFANTIL VARELA SANTIAGO COMPRANDO O NATAL CAP E CEDENDO O DIREITO DE RESGATE</p>
+        <p class="text-xs text-text-body leading-[1.6]">Sorteios decorrentes de Títulos de Capitalização de Pagamento Único, da Modalidade Filantropia Premiável, emitidos pela KOVR Capitalização. Você pode ajudar o HOSPITAL INFANTIL VARELA SANTIAGO comprando o Natal Cap e cedendo o direito de resgate. A aprovação deste Título pela SUSEP não implica, por parte da Autarquia, em incentivo ou recomendação a sua aquisição, representando exclusivamente, sua adequação às normas em vigor. Antes de contratar, consulte previamente as Condições Gerais.</p>
+      </div>
+      <div class="border-t border-border-light py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <span class="text-xs text-text-body">© <script>document.write(new Date().getFullYear())</script> Natal Cap. Todos os direitos reservados.</span>
+        <a href="https://maatz.com.br/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+          <span class="text-xs text-text-body">Desenvolvido por</span>
+          <img src="images/shared/maatz-logo.png" alt="Maatz" class="h-6 w-auto">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Animation Script -->
+  <script src="script/animate.js"></script>
+</body>
+</html>
