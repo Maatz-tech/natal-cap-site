@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="images/logo-natalcap.png">
+  <link rel="icon" type="image/png" href="images/shared/logo-natalcap.png">
   <meta name="description" content="Entre em contato com o Natal Cap.">
   <title>Contato - Natal Cap</title>
 
@@ -24,6 +24,13 @@
     .glass { backdrop-filter: blur(21px); background: rgba(255, 255, 255, 0.45); }
     .glass-border-gradient-grey { position: relative; border: none !important; }
     .glass-border-gradient-grey::before { content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: linear-gradient(180deg, rgba(221,221,221,0) 0%, rgba(221,221,221,0.3) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+
+    /* Animação de atenção - pulsar suave (logo mobile) */
+    @keyframes pulse-attention {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    .logo-mobile.pulse, .logo-desktop.pulse { animation: pulse-attention 0.8s ease-in-out; }
 
     /* Mobile Menu */
     .mobile-menu-overlay {
@@ -54,17 +61,23 @@
 
   <!-- Mobile Menu Overlay -->
   <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
-    <div class="absolute inset-0 bg-black/80" onclick="closeMobileMenu()"></div>
-    <div class="mobile-menu-content relative flex flex-col items-center pt-[100px] pb-[140px] px-6 h-full">
-      <a href="index.html" class="mb-6">
-        <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[80px] h-auto">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-xl" onclick="closeMobileMenu()"></div>
+
+    <!-- Close Button - mesma posição do hambúrguer -->
+    <button onclick="closeMobileMenu()" class="absolute top-4 right-4 z-20 glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center">
+      <svg class="w-[22px] h-[22px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="mobile-menu-content relative flex flex-col items-center pt-[80px] pb-[140px] px-6 h-full">
+      <!-- Logo -->
+      <a href="index.html" class="mb-8">
+        <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[90px] h-auto">
       </a>
-      <button onclick="closeMobileMenu()" class="absolute top-[100px] right-6 w-[40px] h-[40px] flex items-center justify-center text-white/80 hover:text-white transition-colors">
-        <svg class="w-[28px] h-[28px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+
+      <!-- Menu Links -->
       <nav class="flex flex-col items-center w-full max-w-[280px] gap-0">
         <a href="index.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Início</a>
         <a href="resultados.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Resultados</a>
@@ -78,7 +91,7 @@
 
   <!-- Header Mobile -->
   <header class="fixed top-4 left-0 right-0 z-50 flex items-center justify-center lg:hidden px-4">
-    <a href="index.html" class="glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
+    <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
       <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[60px] h-[61px] object-contain">
     </a>
     <button id="mobile-menu-toggle" class="glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center absolute right-4">
@@ -95,8 +108,8 @@
           <li><a href="resultados.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Resultados</a></li>
           <li><a href="instituicao-beneficiada.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Inst. Beneficiada</a></li>
         </ul>
-        <a href="index.html" class="mx-4">
-          <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="h-10 w-auto">
+        <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" class="mx-4">
+          <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="logo-desktop h-10 w-auto">
         </a>
         <ul class="flex items-center gap-2">
           <li><a href="regulamento.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Regulamento</a></li>
@@ -148,6 +161,27 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMobileMenu();
     });
+  </script>
+
+  <!-- Logo Pulse Animation -->
+  <script>
+    (function() {
+      const logos = document.querySelectorAll('.logo-mobile, .logo-desktop');
+      if (!logos.length) return;
+
+      function doPulse() {
+        logos.forEach(logo => {
+          logo.classList.add('pulse');
+          setTimeout(() => logo.classList.remove('pulse'), 800);
+        });
+      }
+
+      // Dispara a cada 6 segundos
+      setInterval(doPulse, 6000);
+
+      // Dispara uma vez após 3 segundos do carregamento
+      setTimeout(doPulse, 3000);
+    })();
   </script>
 </body>
 </html>

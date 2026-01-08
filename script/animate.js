@@ -1,8 +1,11 @@
-// Intersection Observer for scroll animations
+// Intersection Observer for scroll animations (bidirectional)
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+    } else {
+      // Remove a classe quando sai da viewport para animar novamente ao voltar
+      entry.target.classList.remove('visible');
     }
   });
 }, {

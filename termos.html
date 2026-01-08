@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="images/shared/logo-natalcap.png">
-  <meta name="description" content="Regulamento do Natal Cap - Conheça as regras e condições gerais.">
-  <title>Regulamento - Natal Cap</title>
+  <meta name="description" content="Política de Privacidade e Termos de Uso do Natal Cap.">
+  <title>Termos e Política de Privacidade - Natal Cap</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,15 @@
     .accordion-icon { transition: transform 0.3s ease; }
     .accordion-icon.open { transform: rotate(180deg); }
 
+    /* Content styles */
+    .content-text p { margin-bottom: 16px; }
+    .content-text ul, .content-text ol { margin-bottom: 16px; padding-left: 24px; }
+    .content-text ul { list-style-type: disc; }
+    .content-text ol { list-style-type: decimal; }
+    .content-text li { margin-bottom: 8px; }
+    .content-text a { color: #db1526; font-weight: 600; text-decoration: underline; }
+    .content-text a:hover { text-decoration: none; }
+
     /* Bottom Nav */
     .nav-central-wrapper { transition: transform 0.2s ease; }
     .nav-central-btn { transition: box-shadow 0.2s ease; }
@@ -66,7 +75,7 @@
     }
     .nav-central-btn.bounce { animation: bounce-attention 0.7s ease-in-out; }
 
-    /* Animação de atenção - pulsar suave (logo mobile) */
+    /* Animacao de atencao - pulsar suave (logo mobile) */
     @keyframes pulse-attention {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08); }
@@ -104,7 +113,7 @@
   <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-xl" onclick="closeMobileMenu()"></div>
 
-    <!-- Close Button - mesma posição do hambúrguer -->
+    <!-- Close Button - mesma posicao do hamburguer -->
     <button onclick="closeMobileMenu()" class="absolute top-[12px] right-2 z-20 glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center">
       <svg class="w-[22px] h-[22px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -120,7 +129,7 @@
 
       <!-- Menu Links -->
       <nav class="flex flex-col items-center w-full max-w-[280px] gap-0">
-        <a href="index.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Início</a>
+        <a href="index.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Inicio</a>
         <a href="resultados.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Resultados</a>
         <a href="instituicao-beneficiada.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Inst. Beneficiada</a>
         <a href="regulamento.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Regulamento</a>
@@ -144,7 +153,7 @@
         <nav class="mx-auto flex items-center justify-center w-full">
           <div class="glass glass-border-gradient rounded-full px-8 py-5 flex items-center justify-between gap-6 w-full max-w-full">
             <ul class="flex items-center gap-2">
-              <li><a href="index.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Início</a></li>
+              <li><a href="index.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Inicio</a></li>
               <li><a href="resultados.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Resultados</a></li>
               <li><a href="instituicao-beneficiada.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Inst. Beneficiada</a></li>
             </ul>
@@ -176,12 +185,12 @@
       <div class="relative flex flex-col gap-[12px] items-center max-w-[649px] text-center mt-[40px] lg:mt-[36px]">
         <!-- Badge -->
         <div class="backdrop-blur-[6px] bg-white/10 border border-white/20 rounded-full px-[11.5px] py-[4.5px]">
-          <span class="text-white/90 font-bold text-[16px]">Regulamento</span>
+          <span class="text-white/90 font-bold text-[16px]">Termos</span>
         </div>
         <!-- Title -->
-        <h1 class="fade-in text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white">Regulamento e Condições Gerais</h1>
+        <h1 class="fade-in text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white">Politica de Privacidade e Termos de Uso</h1>
         <!-- Subtitle -->
-        <p class="fade-in delay-100 text-[16px] lg:text-[18px] font-medium leading-[1.6] text-white">Confira abaixo os regulamentos completos dos sorteios e as condições gerais.</p>
+        <p class="fade-in delay-100 text-[16px] lg:text-[18px] font-medium leading-[1.6] text-white">Confira abaixo as politicas de privacidade e termos de uso do Natal Cap e da Plataforma Apcap.</p>
       </div>
     </section>
 
@@ -189,7 +198,7 @@
     <section class="relative px-[24px] lg:px-0 pb-[64px] lg:pb-[94px] mt-[-40px] lg:mt-[-70px]">
       <div class="max-w-[784px] mx-auto flex flex-col gap-[16px]">
 
-        <!-- Accordion Item 1 - Regulamento Semanal -->
+        <!-- Accordion Item 1 - Natal Cap - Politica de Privacidade -->
         <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
           <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
             <div class="flex gap-[14px] items-center">
@@ -199,23 +208,152 @@
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
                   <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </div>
-              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Regulamento Semanal</span>
+              <div class="flex flex-col items-start">
+                <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Natal Cap</span>
+                <span class="text-[14px] text-[#7b7d84] leading-[1.4] text-left">Politica de Privacidade</span>
+              </div>
             </div>
             <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
           <div class="accordion-content">
-            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6]">
-              <p class="text-[14px] text-[#7b7d84] leading-[1.6]">Clique&nbsp;<a href="https://l4-files.s3.sa-east-1.amazonaws.com/regulamento/natalcap.pdf" target="_blank" rel="noopener" class="font-bold text-[#db1526] hover:underline">aqui</a>&nbsp;para visualizar o regulamento do Título de Capitalização <b class="text-[#19191a]">NATAL CAP</b>.</p>
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6] content-text text-[14px] text-[#7b7d84] leading-[1.6]">
+              <p>Este site e mantido e operado por <strong class="text-[#19191a]">L4 Digital.</strong></p>
+              <p>Nos coletamos e utilizamos alguns dados pessoais que pertencem aqueles que utilizam nosso site. Ao faze-lo, agimos na qualidade de <strong class="text-[#19191a]">controlador</strong> desses dados e estamos sujeitos as disposicoes da Lei Federal n. 13.709/2018 (Lei Geral de Protecao de Dados Pessoais - LGPD).</p>
+              <p>Nos cuidamos da protecao de seus dados pessoais e, por isso, disponibilizamos esta politica de privacidade, que contem informacoes importantes sobre:</p>
+              <ul>
+                <li>Quem deve utilizar nosso site</li>
+                <li>Quais dados coletamos e o que fazemos com eles;</li>
+                <li>Seus direitos em relacao aos seus dados pessoais; e</li>
+                <li>Como entrar em contato conosco.</li>
+              </ul>
+
+              <p><strong class="text-[#19191a]">1. Dados que coletamos e motivos da coleta</strong></p>
+              <p class="pl-4">Nosso site coleta e utiliza alguns dados pessoais de nossos usuarios, de acordo com o disposto nesta secao.</p>
+              <p class="pl-4"><strong class="text-[#19191a]"><em>1.1. Dados pessoais coletados</em></strong></p>
+              <p class="pl-4">Nos coletamos os seguintes dados pessoais de nossos usuarios:</p>
+              <ul>
+                <li>Dados de Geolocalizacao;</li>
+                <li>Dados Demograficos;</li>
+                <li>Dados Comportamentais de utilizacao no proprio site.</li>
+              </ul>
+              <p class="pl-4">A coleta destes dados ocorre nos seguintes momentos:</p>
+              <ul>
+                <li>Quando o usuario carrega a tela inicial ou qualquer tela;</li>
+                <li>Quando o usuario realiza alguma acao/interacao no site, clicando em botoes, janelas ou links;</li>
+              </ul>
+              <p class="pl-4">Estes dados sao coletados com as seguintes finalidades:</p>
+              <ul>
+                <li>Geracao de relatorios internos;</li>
+                <li>Analises para melhorias de experiencias do usuario;</li>
+                <li>Elaboracoes de publicos (segmentacoes) direcionados a campanhas publicitarias de marketing digital;</li>
+              </ul>
+
+              <p class="pl-4"><strong class="text-[#19191a]"><em>1.2. Dados sensiveis</em></strong></p>
+              <p class="pl-4"><strong class="text-[#19191a]">Nao</strong> serao coletados dados sensiveis de nossos usuarios, assim entendidos aqueles definidos nos arts. 11 e seguintes da Lei de Protecao de Dados Pessoais. Assim, <strong class="text-[#19191a]">nao</strong> havera coleta de dados sobre origem racial ou etnica, conviccao religiosa, opiniao politica, filiacao a sindicato ou a organizacao de carater religioso, filosofico ou politico, dado referente a saude ou a vida sexual, dado genetico ou biometrico, quando vinculado a uma pessoa natural.</p>
+
+              <p class="pl-4"><strong class="text-[#19191a]"><em>1.3. Cookies</em></strong></p>
+              <p class="pl-4"><em>Cookies</em> sao pequenos arquivos de texto baixados automaticamente em seu dispositivo quando voce acessa e navega por um site. Eles servem, basicamente, para seja possivel identificar dispositivos, atividades e preferencias de usuarios.</p>
+              <p class="pl-4">Os <em>cookies</em> nao permitem que qualquer arquivo ou informacao sejam extraidos do disco rigido do usuario, nao sendo possivel, ainda, que, por meio deles, se tenha acesso a informacoes pessoais que nao tenham partido do usuario ou da forma como utiliza os recursos do site.</p>
+
+              <p class="pl-8"><strong class="text-[#19191a]"><em>1.3.1. Cookies do site</em></strong></p>
+              <p class="pl-8">Os <em>cookies</em> do site sao aqueles enviados ao computador ou dispositivo do usuario e administrador exclusivamente pelo site.</p>
+              <p class="pl-8">As informacoes coletadas por meio destes <em>cookies</em> sao utilizadas para melhorar e personalizar a experiencia do usuario, sendo que alguns <em>cookies</em> podem, por exemplo, ser utilizados para lembrar as preferencias e escolhas do usuario, bem como para o oferecimento de conteudo personalizado.</p>
+
+              <p class="pl-8"><strong class="text-[#19191a]"><em>1.3.2. Cookies de terceiros</em></strong></p>
+              <p class="pl-8">Alguns de nossos parceiros podem configurar <em>cookies</em> nos dispositivos dos usuarios que acessam nosso site.</p>
+              <p class="pl-8">Estes <em>cookies</em>, em geral, visam possibilitar que nossos parceiros possam oferecer seu conteudo e seus servicos ao usuario que acessa nosso site de forma personalizada, por meio da obtencao de dados de navegacao extraidos a partir de sua interacao com o site.</p>
+              <p class="pl-8">O usuario podera obter mais informacoes sobre os <em>cookies</em> de terceiro e sobre a forma como os dados obtidos a partir dele sao tratados, alem de ter acesso a descricao dos <em>cookies</em> utilizados e de suas caracteristicas, acessando o seguinte <em>link</em>:</p>
+              <ul class="pl-8">
+                <li><em>Google Analytics, Adwords, AdSense, Youtube:</em> <a href="https://policies.google.com/technologies/cookies?hl=pt-BR" target="_blank" rel="noopener">https://policies.google.com/technologies/cookies?hl=pt-BR</a></li>
+                <li>Meta (Facebook, Instagram, WhatsApp): <a href="https://web.facebook.com/privacy/policies/cookies/" target="_blank" rel="noopener">https://web.facebook.com/privacy/policies/cookies/</a></li>
+              </ul>
+              <p class="pl-8">As entidades encarregadas da coleta dos <em>cookies</em> poderao ceder as informacoes obtidas a terceiros.</p>
+
+              <p class="pl-8"><strong class="text-[#19191a]"><em>1.3.3. Gestao de cookies</em></strong></p>
+              <p class="pl-8">O usuario podera se opor ao registro de <em>cookies</em> pelo site, bastando que desative esta opcao no seu proprio navegador. Mais informacoes sobre como fazer isso em alguns dos principais navegadores utilizados hoje podem ser acessadas a partir dos seguintes <em>links</em>:</p>
+              <ul class="pl-8">
+                <li>Internet Explorer: <a href="https://support.microsoft.com/pt-br/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank" rel="noopener">https://support.microsoft.com/pt-br/help/17442/windows-internet-explorer-delete-manage-cookies</a></li>
+                <li>Safari: <a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank" rel="noopener">https://support.apple.com/pt-br/guide/safari/sfri11471/mac</a></li>
+                <li>Google Chrome: <a href="https://support.google.com/chrome/answer/95647?hl=pt-BR&hlrm=pt" target="_blank" rel="noopener">https://support.google.com/chrome/answer/95647?hl=pt-BR&hlrm=pt</a></li>
+                <li>Mozilla Firefox: <a href="https://support.mozilla.org/pt-BR/kb/ative-e-desative-os-cookies-que-os-sites-usam" target="_blank" rel="noopener">https://support.mozilla.org/pt-BR/kb/ative-e-desative-os-cookies-que-os-sites-usam</a></li>
+                <li>Opera: <a href="https://www.opera.com/help/tutorials/security/privacy/" target="_blank" rel="noopener">https://www.opera.com/help/tutorials/security/privacy/</a></li>
+              </ul>
+              <p class="pl-8">A desativacao dos <em>cookies</em>, no entanto, pode afetar a disponibilidade de algumas ferramentas e funcionalidades do site, comprometendo seu correto e esperado funcionamento. Outra consequencia possivel e remocao das preferencias do usuario que eventualmente tiverem sido salvas, prejudicando sua experiencia.</p>
+
+              <p class="pl-4"><strong class="text-[#19191a]"><em>1.4. Coleta de dados nao previstos expressamente</em></strong></p>
+              <p class="pl-4">Eventualmente, outros tipos de dados nao previstos expressamente nesta Politica de Privacidade poderao ser coletados, desde que sejam fornecidos com o consentimento do usuario, ou, ainda, que a coleta seja permitida com fundamento em outra base legal prevista em lei.</p>
+              <p class="pl-4">Em qualquer caso, a coleta de dados e as atividades de tratamento dela decorrentes serao informadas aos usuarios do site.</p>
+
+              <p><strong class="text-[#19191a]">2. Compartilhamento de dados pessoais com terceiros</strong></p>
+              <p class="pl-4">Nos compartilhamos alguns dos dados pessoais mencionados nesta secao com terceiros.</p>
+              <p class="pl-4">Os dados compartilhados sao os seguintes:</p>
+              <p class="pl-4">Os dados de <strong class="text-[#19191a]">navegacao</strong> do usuario sao compartilhados com a Idea Maker, empresa de meios de pagamento que opera a <strong class="text-[#19191a]">plataforma Apcap</strong> (responsavel pela venda dos titulos de capitalizacao atraves do de checkouts em pontos de venda, aplicativos web e mobile).</p>
+              <p class="pl-4">Voce encontra tambem nesta pagina as <strong class="text-[#19191a]">politicas e termos</strong> da plataforma Apcap.</p>
+              <p class="pl-4">Estes dados sao compartilhados pelas seguintes razoes e para as seguintes finalidades:</p>
+              <p class="pl-4">O objetivo desse compartilhamento consiste em gerar estrategias de aprimoramento das experiencias do usuario na compra dos produtos e servicos, bem como elaborar campanhas de marketing digital direcionadas aos publicos-alvo.</p>
+              <p class="pl-4">Alem das situacoes aqui informadas, e possivel que compartilhemos dados com terceiros para cumprir alguma determinacao legal ou regulatoria, ou, ainda, para cumprir alguma ordem expedida por autoridade publica.</p>
+              <p class="pl-4">Em qualquer caso, o compartilhamento de dados pessoais observara todas as leis e regras aplicaveis, buscando sempre garantir a seguranca dos dados de nosso usuarios, observados os padroes tecnicos empregados no mercado.</p>
+
+              <p><strong class="text-[#19191a]">3. Por quanto tempo seus dados pessoais serao armazenados</strong></p>
+              <p class="pl-4">Os dados pessoais coletados pelo site sao armazenados e utilizados por periodo de tempo que corresponda ao necessario para atingir as finalidades elencadas neste documento e que considere os direitos de seus titulares, os direitos do controlador do site e as disposicoes legais ou regulatorias aplicaveis.</p>
+              <p class="pl-4">Uma vez expirados os periodos de armazenamento dos dados pessoais, eles sao removidos de nossas bases de dados ou anonimizados, salvo nos casos em que houver a possibilidade ou a necessidade de armazenamento em virtude de disposicao legal ou regulatoria.</p>
+
+              <p><strong class="text-[#19191a]">4. Bases legais para o tratamento de dados pessoais</strong></p>
+              <p class="pl-4">Cada operacao de tratamento de dados pessoais precisa ter um fundamento juridico, ou seja, uma base legal, que nada mais e que uma justificativa que a autorize, prevista na Lei Geral de Protecao de Dados Pessoais.</p>
+              <p class="pl-4">Todas as Nossas atividades de tratamento de dados pessoais possuem uma base legal que as fundamenta, dentre as permitidas pela legislacao. Mais informacoes sobre as bases legais que utilizamos para operacoes de tratamento de dados pessoais especificas podem ser obtidas a partir de nossos canais de contato, informados ao final desta Politica.</p>
+
+              <p><strong class="text-[#19191a]">5. Direitos do usuario</strong></p>
+              <p class="pl-4">O usuario do site possui os seguintes direitos, conferidos pela Lei de Protecao de Dados Pessoais:</p>
+              <ul>
+                <li>Confirmacao da existencia de tratamento;</li>
+                <li>Acesso aos dados;</li>
+                <li>Correcao de dados incompletos, inexatos ou desatualizados;</li>
+                <li>Anonimizacao, bloqueio ou eliminacao de dados desnecessarios, excessivos ou tratados em desconformidade com o disposto na lei;</li>
+                <li>Portabilidade dos dados a outro fornecedor de servico ou produto, mediante requisicao expressa, de acordo com a regulamentacao da autoridade nacional, observados os segredos comercial e industrial;</li>
+                <li>Eliminacao dos dados pessoais tratados com o consentimento do titular, exceto nos casos previstos em lei;</li>
+                <li>Informacao das entidades publicas e privadas com as quais o controlador realizou uso compartilhado de dados;</li>
+                <li>Informacao sobre a possibilidade de nao fornecer consentimento e sobre as consequencias da negativa;</li>
+                <li>Revogacao do consentimento.</li>
+              </ul>
+              <p class="pl-4">E importante destacar que, nos termos da LGPD, nao existe um direito de eliminacao de dados tratados com fundamento em bases legais distintas do consentimento, a menos que os dados seja desnecessarios, excessivos ou tratados em desconformidade com o previsto na lei.</p>
+
+              <p class="pl-8"><strong class="text-[#19191a]"><em>5.1. Como o titular pode exercer seus direitos</em></strong></p>
+              <p class="pl-8">Para garantir que o usuario que pretende exercer seus direitos e, de fato, o titular dos dados pessoais objeto da requisicao, poderemos solicitar documentos ou outras informacoes que possam auxiliar em sua correta identificacao, a fim de resguardar nossos direitos e os direitos de terceiros. Isto somente sera feito, porem, se for absolutamente necessario, e o requerente recebera todas as informacoes relacionadas.</p>
+
+              <p><strong class="text-[#19191a]">6. Medidas de seguranca no tratamento de dados pessoais</strong></p>
+              <p class="pl-4">Empregamos medidas tecnicas e organizativas aptas a proteger os dados pessoais de acessos nao autorizados e de situacoes de destruicao, perda, extravio ou alteracao desses dados.</p>
+              <p class="pl-4">As medidas que utilizamos levam em consideracao a natureza dos dados, o contexto e a finalidade do tratamento, os riscos que uma eventual violacao geraria para os direitos e liberdades do usuario, e os padroes atualmente empregados no mercado por empresas semelhantes a nossa.</p>
+              <p class="pl-4">Entre as medidas de seguranca adotadas por nos, destacamos as seguintes:</p>
+              <ul>
+                <li>Os dados de nossos usuarios sao armazenados em ambiente seguro;</li>
+                <li>Limitamos o acesso aos dados de nossos usuarios, de modo que terceiros nao autorizados nao possam acessa-los;</li>
+                <li>Utilizamos certificado SSL (<em>Secure Socket Layer</em>), de modo que a transmissao de dados entre os dispositivos dos usuarios e nossos servidores aconteca de forma criptografada;</li>
+                <li>Mantemos registros de todos aqueles que tem, de alguma forma, contato com nossos dados.</li>
+              </ul>
+              <p class="pl-4">Ainda que adote tudo o que esta ao seu alcance para evitar incidentes de seguranca, e possivel que ocorra algum problema motivado exclusivamente por um terceiro - como em caso de ataques de <em>hackers</em> ou <em>crackers</em> ou, ainda, em caso de culpa exclusiva do usuario, que ocorre, por exemplo, quando ele mesmo transfere seus dados a terceiro. Assim, embora sejamos, em geral, responsaveis pelos dados pessoais que tratamos, nos eximimos de responsabilidade caso ocorra uma situacao excepcional como essas, sobre as quais nao temos nenhum tipo de controle.</p>
+              <p class="pl-4">De qualquer forma, caso ocorra qualquer tipo de incidente de seguranca que possa gerar risco ou dano relevante para qualquer de nossos usuarios, comunicaremos os afetados e a Autoridade Nacional de Protecao de Dados acerca do ocorrido, em conformidade com o disposto na Lei Geral de Protecao de Dados.</p>
+
+              <p><strong class="text-[#19191a]">7. Reclamacao a uma autoridade de controle</strong></p>
+              <p class="pl-4">Sem prejuizo de qualquer outra via de recurso administrativo ou judicial, os titulares de dados pessoais que se sentirem, de qualquer forma, lesados, podem apresentar reclamacao a Autoridade Nacional de Protecao de Dados.</p>
+
+              <p><strong class="text-[#19191a]">8. Alteracoes nesta politica</strong></p>
+              <p class="pl-4">A presente versao desta Politica de Privacidade foi atualizada pela ultima vez em: 17/01/2023.</p>
+              <p class="pl-4">Reservamo-nos o direito de modificar, a qualquer momento, as presentes normas, especialmente para adapta-las as eventuais alteracoes feitas em nosso site, seja pela disponibilizacao de novas funcionalidades, seja pela supressao ou modificacao daquelas ja existentes.</p>
+              <p class="pl-4">Sempre que houver uma modificacao, nossos usuarios serao notificados acerca da mudanca.</p>
+
+              <p><strong class="text-[#19191a]">9. Como entrar em contato conosco</strong></p>
+              <p class="pl-4">Para esclarecer quaisquer duvidas sobre esta Politica de Privacidade ou sobre os dados pessoais que tratamos, entre em contato com nosso Encarregado de Protecao de Dados Pessoais, por algum dos canais mencionados abaixo:</p>
+              <p class="pl-4"><em>E-mail</em>: <a href="mailto:dados-pessoais@l4digital.com.br">dados-pessoais@l4digital.com.br</a></p>
+              <p class="pl-4">Endereco postal: Avenida Paulista, 1636 - Cj 609 - Sao Paulo/SP</p>
             </div>
           </div>
         </div>
 
-        <!-- Accordion Item 2 - Regulamento Produto "Natal Cap" -->
+        <!-- Accordion Item 2 - Plataforma Apcap - Termo de Adesao -->
         <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
           <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
             <div class="flex gap-[14px] items-center">
@@ -228,20 +366,24 @@
                   <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </div>
-              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Regulamento Produto "Natal Cap"</span>
+              <div class="flex flex-col items-start">
+                <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Plataforma Apcap</span>
+                <span class="text-[14px] text-[#7b7d84] leading-[1.4] text-left">Termo de Adesao</span>
+              </div>
             </div>
             <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
           <div class="accordion-content">
-            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6]">
-              <p class="text-[14px] text-[#7b7d84] leading-[1.6] text-justify"><b class="text-[#19191a]">1. INTRODUÇÃO: A contratação deste título é apropriada principalmente na hipótese de o consumidor estar interessado em contribuir com entidades beneficentes de assistência sociais, certificadas nos termos da legislação vigente, e participar de sorteio(s).</b> Ao adquirir o <span class="text-[#19191a] font-semibold">NATAL CAP</span> – Título de Capitalização de Pagamento Único, da Modalidade Filantropia Premiável, emitido pela <b class="text-[#19191a]">KOVR Capitalização S.A. – KOVRCAP</b> (CNPJ n.º 93.202.448/0001-79; Av. Brigadeiro Faria Lima, 3477, 2º andar – Torre B, Itaim Bibi – São Paulo – SP – CEP 04538-133) – você concorrerá aos sorteios previstos neste Título e poderá ajudar na prestação de serviços de assistência nas diversas atividades da instituição, mediante a cessão da integralidade (100%) do direito de resgate do seu Título <span class="text-[#19191a] font-semibold">HOSPITAL INFANTIL VARELA SANTIAGO (08.337.586/0001-96; ENDEREÇO: Av Deodoro da Fonseca, 498, Centro, NATAL/RN)</span>. <b class="text-[#19191a]">1.1 Condições para Aquisição</b>: Poderão adquirir o <span class="text-[#19191a] font-semibold">NATAL CAP</span>, pelo preço indicado no anverso, as pessoas físicas, maiores de 16 (dezesseis) anos que preencherem, de forma legível, a ficha de cadastro da cautela. Antes de contratar, consulte previamente as Condições Gerais do Título, cuja versão completa está disponível para consulta no https://natalcap.com.br/. É proibida a venda de título de capitalização a menores de dezesseis anos – Art. 3.º, I do Código Civil. <b class="text-[#19191a]">2. NATUREZA DO TÍTULO</b>: Este Título de Capitalização foi aprovado pela Superintendência de Seguros Privados – SUSEP – através do Processo SUSEP indicado no anverso desta cautela. <b class="text-[#19191a]">A aprovação deste plano pela SUSEP, não implica, por parte da Autarquia, em incentivo ou recomendação à sua aquisição, representando, exclusivamente, sua adequação às normas em vigor</b>. <b class="text-[#19191a]">3. VIGÊNCIA</b>: A vigência do Título é de 2 meses. <b class="text-[#19191a]">4. RESGATE:</b> O valor do resgate estará disponível ao Titular após 2 meses de carência. O <span class="text-[#19191a] font-semibold">HOSPITAL INFANTIL VARELA SANTIAGO</span> receberá 100% do direito de resgate decorrente dos títulos cedidos, de acordo com suas Condições Gerais. Na hipótese de não haver cessão de resgate, o subscritor deverá realizar um cadastro complementar, acessando o <a href="https://portalcap.kovr.com.br/PortalCAP/Account/Index" target="_blank" rel="noopener" class="font-bold text-[#db1526] hover:underline">PortalCap</a>, para solicitar seu resgate. <b class="text-[#19191a]">5. SORTEIOS:</b> Ao adquirir o <span class="text-[#19191a] font-semibold">NATAL CAP</span> você concorrerá nos sorteios previstos no Título, divididos em 2 modalidades distintas. <b class="text-[#19191a]">Os títulos contemplados em qualquer uma das modalidades previstas serão resgatados e não concorrerão aos próximos sorteios</b>. <b class="text-[#19191a]">5.1. Sorteios da Modalidade "Globo Premiado":</b> Cada título contém impressos, replicados para cada um dos sorteios, os conjuntos de 20 dezenas aleatórias e sem repetição entre si, compreendidas de 01 a 60. Para a apuração do Título contemplado será utilizado um globo contendo 60 bolas numeradas de 01 a 60. Desse globo serão retiradas aleatoriamente tantas bolas quantas sejam necessárias, uma de cada vez e pausadamente, sem reposição das bolas, até que um ou mais Títulos tenham um conjunto com todas as suas 20 dezenas sorteadas. Os Títulos contemplados em cada um dos sorteios farão jus ao respectivo prêmio indicado no anverso. <b class="text-[#19191a]">Havendo mais de um Título contemplado em cada sorteio, o prêmio sorteado será rateado pela quantidade de títulos que tiveram contemplação, em partes iguais. 5.2. Sorteios da Modalidade "Giro Premiado":</b> Cada Título contém impresso os conjuntos, distintos dos demais, de 03 (três) dezenas aleatórias compreendidas entre 00 e 99, onde a ordem das dezenas importa para a combinação dos sorteios, podendo haver repetição das dezenas em um mesmo conjunto. Para a apuração dos Títulos sorteados em cada sorteio será utilizado um sistema randômico onde serão sorteadas, em ordem, a primeira, a segunda e a terceira dezena compreendidas de 00 a 99, distribuídas na série, que identificarão o conjunto de dezenas dos títulos contemplados em cada sorteio desta modalidade, que farão jus aos prêmios indicados no anverso. Vide mais informações nas Condições Gerais do Título. <b class="text-[#19191a]">Probabilidades: As probabilidades de contemplação podem variar em cada edição, estando informadas no verso dos Títulos comercializados. 6. LOCAL DO SORTEIO:</b> Os sorteios das Modalidades <b class="text-[#19191a]">"Globo Premiado"</b> e <b class="text-[#19191a]">"Giro Premiado"</b> serão realizados pela <b class="text-[#19191a]">KOVRCAP</b>, na presença de Auditor Independente, nas dependências da <span class="text-[#19191a] font-semibold">Rua Presidente Quaresma, 997, Alecrim, Natal/RN</span>. no horário e dia indicados no anverso. O local da realização do sorteio é de livre acesso aos adquirentes do <span class="text-[#19191a] font-semibold">NATAL CAP</span>. <b class="text-[#19191a]">7. REQUISITOS PARA PAGAMENTO DA PREMIAÇÃO:</b> Para o recebimento do prêmio, o adquirente do Título sorteado deverá comparecer na <span class="text-[#19191a] font-semibold">Av. Nilo Peçanha</span>, 239, Petrópolis, Natal/RN. munido do Título original contemplado, em perfeito estado de conservação; cópia simples do seu RG; do CPF e de comprovante de residência emitido a menos de 90 (noventa) dias. A <b class="text-[#19191a]">KOVRCAP</b> pagará o prêmio em até 15 (quinze) dias corridos, contados da apresentação da documentação exigida.</p>
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6] content-text text-[14px] text-[#7b7d84] leading-[1.6]">
+              <p>A Plataforma APCAP e um sistema desenvolvido pela <strong class="text-[#19191a]">IDEA MAKER</strong>, principal empresa responsavel pelo aplicativo, e e caracterizada por um sistema que possibilita a realizacao de transacoes por meio de pagamento eletronico <em>(cartoes, boletos ou Pix)</em>.</p>
+              <p>Para informacoes sobre a Adesao, Termos e Condicoes Gerais de Uso pode consultar <a href="https://ideamaker.com.br/termos-de-uso" target="_blank" rel="noopener">clicando aqui</a>.</p>
             </div>
           </div>
         </div>
 
-        <!-- Accordion Item 3 - Condições Gerais & Processos SUSEP (Open by default) -->
+        <!-- Accordion Item 3 - Plataforma Apcap - Politica de Estorno -->
         <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
           <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
             <div class="flex gap-[14px] items-center">
@@ -251,36 +393,27 @@
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
                   <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </div>
-              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Condições Gerais & Processos SUSEP</span>
+              <div class="flex flex-col items-start">
+                <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Plataforma Apcap</span>
+                <span class="text-[14px] text-[#7b7d84] leading-[1.4] text-left">Politica de Estorno</span>
+              </div>
             </div>
             <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
           <div class="accordion-content">
-            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6] flex flex-col gap-[16px] lg:gap-[21px]">
-              <p class="text-[14px] text-[#7b7d84] leading-[1.6]">
-                As condições contratuais deste produto protocolizadas pela KOVR Capitalização S.A. junto à SUSEP poderão ser consultadas no endereço eletrônico www.susep.gov.br, de acordo com o número de processo constante da proposta, <a href="https://www.susep.gov.br" target="_blank" class="font-bold text-[#db1526] underline">neste link aqui</a>.
-              </p>
-
-              <!-- SUSEP Box -->
-              <div class="bg-[#f9fafb] border border-[#e5e5e6] rounded-[16px] p-[17px] flex flex-col gap-[8px]">
-                <h4 class="text-[20px] font-bold text-[#19191a] leading-[1.4]">Processo SUSEP Nº:</h4>
-                <p class="text-[14px] text-[#7b7d84] leading-[1.6]">Clique nos números abaixo para visualizar o documento PDF:</p>
-
-                <!-- Links Grid - Mobile: 1 column, Desktop: 3 columns -->
-                <div id="condicoes-gerais-links" class="flex flex-col lg:grid lg:grid-cols-3 gap-[12px]">
-                  <!-- Links carregados dinamicamente via data/regulamento.json -->
-                </div>
-              </div>
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6] content-text text-[14px] text-[#7b7d84] leading-[1.6]">
+              <p>A plataforma permite a Gestao de Sorteios Promocionais, de varios formatos, apurando e disponibilizando informacoes de forma rapida e segura.</p>
+              <p>Desde o seu lancamento, a Plataforma Apcap atua em conformidade com toda a parte de seguranca de dados dos clientes, conforme exige a lei LGPD (instaurada em 2021), e atualmente a Ideia Maker (empresa idealizadora da plataforma) adquiriu a certificacao PCI (certificado fornecido pelas bandeiras de cartao), como mais uma forma concreta de assegurar aos seus clientes que quaisquer transacoes que ocorrem por meio da Plataforma Apcap sao 100% seguras de vazamento ou invasao.</p>
+              <p>Para saber mais sobre a Politica de Estorno <a href="https://ideamaker.com.br/condicoes-da-carteira-digital-e-de-estorno-na-plataforma-apcap" target="_blank" rel="noopener">clique aqui</a>.</p>
             </div>
           </div>
         </div>
 
-        <!-- Accordion Item 4 - Condições Gerais - Sorteio Extra -->
+        <!-- Accordion Item 4 - Plataforma Apcap - Politica de Privacidade -->
         <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
           <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
             <div class="flex gap-[14px] items-center">
@@ -290,27 +423,23 @@
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
                   <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
               </div>
-              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Condições Gerais - Sorteio Extra</span>
+              <div class="flex flex-col items-start">
+                <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Plataforma Apcap</span>
+                <span class="text-[14px] text-[#7b7d84] leading-[1.4] text-left">Politica de Privacidade</span>
+              </div>
             </div>
             <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
           <div class="accordion-content">
-            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6]">
-              <!-- SUSEP Box -->
-              <div class="bg-[#f9fafb] border border-[#e5e5e6] rounded-[16px] p-[17px] flex flex-col gap-[8px]">
-                <h4 class="text-[20px] font-bold text-[#19191a] leading-[1.4]">Processo SUSEP Nº:</h4>
-                <p class="text-[14px] text-[#7b7d84] leading-[1.6]">Clique nos números abaixo para visualizar o documento PDF:</p>
-
-                <!-- Links Grid - Mobile: 1 column, Desktop: 2 columns -->
-                <div id="sorteio-extra-links" class="flex flex-col lg:grid lg:grid-cols-2 gap-[12px]">
-                  <!-- Links carregados dinamicamente via data/regulamento.json -->
-                </div>
-              </div>
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6] content-text text-[14px] text-[#7b7d84] leading-[1.6]">
+              <p>Atraves da plataforma e oferecido aplicativos personalizados de acordo com as necessidades e regras de cada negocio, respeitando as individualidades e caracteristicas proprias de seus clientes, e o diferencial e a comodidade em tudo ser realizado dentro de casa, seja como forma de pagamento, sorteios, manutencao e o marketing de interacao com o cliente.</p>
+              <p>O objetivo e atender de maneira dinamica, os produtos que forem integrados a ela, incentivando o consumo e interacao constante, que gera a fidelizacao dos clientes no uso continuo da plataforma.</p>
+              <p><strong class="text-[#19191a]">Confira a Politica de Privacidade completa <a href="https://ideamaker.com.br/politica-de-privacidade" target="_blank" rel="noopener">clicando aqui</a>.</strong></p>
+              <p>Atualmente sao mais de 20 aplicativos integrados a Plataforma Apcap, e que atendem a todo territorio nacional, e voce pode conferir cada um deles <a href="https://ideamaker.com.br/parceiros" target="_blank" rel="noopener">clicando aqui</a>.</p>
             </div>
           </div>
         </div>
@@ -330,9 +459,9 @@
           <img src="images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
         </div>
 
-        <!-- Conteúdo -->
+        <!-- Conteudo -->
         <div class="fade-in-left flex-1 flex flex-col gap-[24px] lg:gap-[40px]">
-          <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white w-[284px] lg:w-auto">Compre também pelo aplicativo do Natal Cap!</h2>
+          <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white w-[284px] lg:w-auto">Compre tambem pelo aplicativo do Natal Cap!</h2>
           <div class="flex gap-[24px]">
             <a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[61px] flex items-center gap-[8px]">
               <img src="images/shared/google-play-icon.svg" alt="Google Play">
@@ -359,12 +488,12 @@
       <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
         <div class="flex flex-wrap items-center gap-8 mx-auto lg:mx-0 text-center">
           <div class="w-[180px] mt-[-96px] mx-auto lg:mx-0 bg-gray-700">
-            <img src="images/footer-titulo.png" alt="Natal Cap Título" class="w-full h-full object-cover object-top">
+            <img src="images/footer-titulo.png" alt="Natal Cap Titulo" class="w-full h-full object-cover object-top">
           </div>
 
           <div class="flex flex-col w-full lg:w-auto lg:flex-row gap-8 items-start justify-center">
             <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
-              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Realização</span>
+              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Realizacao</span>
               <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="h-[67px] w-auto">
             </div>
             <a href="https://hospitalvarelasantiago.org.br/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
@@ -372,7 +501,7 @@
               <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Varela Santiago" class="h-[64px] w-auto">
             </a>
             <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
-              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Título emitido pela</span>
+              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Titulo emitido pela</span>
               <div class="bg-white rounded-lg p-1">
                 <img src="images/logo-kovr.png" alt="KOVR" class="h-[55px] w-auto">
               </div>
@@ -393,33 +522,33 @@
       </div>
       <div class="border-t border-b border-[#e5e5e6] py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
-          <h4 class="text-lg font-bold text-[#db1526] mb-4">Navegação</h4>
+          <h4 class="text-lg font-bold text-[#db1526] mb-4">Navegacao</h4>
           <ul class="flex flex-col gap-2">
             <li><a href="resultados.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Resultados</a></li>
             <li><a href="ganhadores.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Ganhadores</a></li>
-            <li><a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Comprar Título</a></li>
+            <li><a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Comprar Titulo</a></li>
             <li><a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Baixar App</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-lg font-bold text-[#db1526] mb-4">Legal</h4>
           <ul class="flex flex-col gap-2">
-            <li><a href="regulamento.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Regulamento e Condições Gerais</a></li>
-            <li><a href="termos.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Política de Privacidade e Termos de Uso</a></li>
+            <li><a href="regulamento.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Regulamento e Condicoes Gerais</a></li>
+            <li><a href="termos.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Politica de Privacidade e Termos de Uso</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-lg font-bold text-[#db1526] mb-4">Fale Conosco</h4>
           <div class="flex flex-col gap-2">
-            <span class="text-sm text-[#7b7d84]">Segunda a Sexta: 8h às 18h</span>
+            <span class="text-sm text-[#7b7d84]">Segunda a Sexta: 8h as 18h</span>
             <a href="tel:+558432026000" class="text-xl font-bold text-[#19191a] hover:text-[#db1526] transition-colors">(84) 3202-6000</a>
             <a href="mailto:atendimento@natalcap.com.br" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">atendimento@natalcap.com.br</a>
           </div>
         </div>
         <div>
-          <h4 class="text-lg font-bold text-[#db1526] mb-4">Endereço</h4>
+          <h4 class="text-lg font-bold text-[#db1526] mb-4">Endereco</h4>
           <div class="flex flex-col gap-3">
-            <span class="text-sm text-[#7b7d84]">Av. Nilo Peçanha, 239 - Petrópolis - Natal/RN</span>
+            <span class="text-sm text-[#7b7d84]">Av. Nilo Pecanha, 239 - Petropolis - Natal/RN</span>
             <a href="https://share.google/d2lQ2IVhYe6EGWpX3" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-[#19191a] inline-flex items-center gap-2 hover:text-[#db1526] transition-colors">
               Ver no mapa
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H3.5M8.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -428,9 +557,9 @@
         </div>
       </div>
       <div class="py-6 flex flex-col gap-3">
-        <p class="text-sm font-bold text-[#db1526]">É proibida a venda de títulos de capitalização a menores de dezesseis anos.</p>
-        <p class="text-xs font-bold text-[#19191a]">VOCÊ PODE AJUDAR O HOSPITAL INFANTIL VARELA SANTIAGO COMPRANDO O NATAL CAP E CEDENDO O DIREITO DE RESGATE</p>
-        <p class="text-xs text-[#7b7d84] leading-[1.6]">Sorteios decorrentes de Títulos de Capitalização de Pagamento Único, da Modalidade Filantropia Premiável, emitidos pela KOVR Capitalização. Você pode ajudar o HOSPITAL INFANTIL VARELA SANTIAGO comprando o Natal Cap e cedendo o direito de resgate. A aprovação deste Título pela SUSEP não implica, por parte da Autarquia, em incentivo ou recomendação a sua aquisição, representando exclusivamente, sua adequação às normas em vigor. Antes de contratar, consulte previamente as Condições Gerais.</p>
+        <p class="text-sm font-bold text-[#db1526]">E proibida a venda de titulos de capitalizacao a menores de dezesseis anos.</p>
+        <p class="text-xs font-bold text-[#19191a]">VOCE PODE AJUDAR O HOSPITAL INFANTIL VARELA SANTIAGO COMPRANDO O NATAL CAP E CEDENDO O DIREITO DE RESGATE</p>
+        <p class="text-xs text-[#7b7d84] leading-[1.6]">Sorteios decorrentes de Titulos de Capitalizacao de Pagamento Unico, da Modalidade Filantropia Premiavel, emitidos pela KOVR Capitalizacao. Voce pode ajudar o HOSPITAL INFANTIL VARELA SANTIAGO comprando o Natal Cap e cedendo o direito de resgate. A aprovacao deste Titulo pela SUSEP nao implica, por parte da Autarquia, em incentivo ou recomendacao a sua aquisicao, representando exclusivamente, sua adequacao as normas em vigor. Antes de contratar, consulte previamente as Condicoes Gerais.</p>
       </div>
       <div class="border-t border-[#e5e5e6] py-8 pb-32 flex flex-col md:flex-row items-center justify-between gap-4">
         <span class="text-xs text-[#7b7d84]">© <script>document.write(new Date().getFullYear())</script> Natal Cap. Todos os direitos reservados.</span>
@@ -444,7 +573,7 @@
 
   <!-- Fixed Bottom Navbar -->
   <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px] pb-[env(safe-area-inset-bottom)]">
-    <!-- Botão central elevado + label -->
+    <!-- Botao central elevado + label -->
     <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="btn-nav-central" class="nav-central-wrapper absolute top-[-32px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
       <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px]">
         <div class="bg-[#db1526] w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-lg">
@@ -468,7 +597,7 @@
           <span class="text-xs font-semibold tracking-wide text-center">Meus bilhetes</span>
         </a>
 
-        <!-- Espaço central (onde fica o botão elevado) -->
+        <!-- Espaco central (onde fica o botao elevado) -->
         <div class="flex-1"></div>
 
         <!-- Resultados -->
@@ -533,7 +662,7 @@
         icon.classList.add('open');
         content.style.maxHeight = content.scrollHeight + 'px';
 
-        // Remove o max-height inline após a transição para permitir resize
+        // Remove o max-height inline apos a transicao para permitir resize
         content.addEventListener('transitionend', function handler() {
           if (content.classList.contains('open')) {
             content.style.maxHeight = 'none';
@@ -544,7 +673,7 @@
     }
   </script>
 
-  <!-- Botão Central Bounce Animation -->
+  <!-- Botao Central Bounce Animation -->
   <script>
     (function() {
       const btn = document.querySelector('.nav-central-btn');
@@ -581,52 +710,8 @@
       // Dispara a cada 6 segundos
       setInterval(doPulse, 6000);
 
-      // Dispara uma vez após 3 segundos do carregamento
+      // Dispara uma vez apos 3 segundos do carregamento
       setTimeout(doPulse, 3000);
-    })();
-  </script>
-
-  <!-- Dynamic Regulamento Config Loader -->
-  <script>
-    (function() {
-      fetch('data/regulamento.json')
-        .then(response => response.json())
-        .then(config => {
-          const linkIcon = `<svg class="w-[14px] h-[14px] text-[#7b7d84] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>`;
-
-          function createLinkElement(item) {
-            const a = document.createElement('a');
-            a.href = item.pdf || '#';
-            if (item.pdf) {
-              a.target = '_blank';
-              a.rel = 'noopener noreferrer';
-            }
-            a.className = 'bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors';
-            a.innerHTML = `<span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">${item.codigo}</span>${linkIcon}`;
-            return a;
-          }
-
-          // Condições Gerais
-          const condicoesContainer = document.getElementById('condicoes-gerais-links');
-          if (condicoesContainer && config.condicoesGerais) {
-            config.condicoesGerais.forEach(item => {
-              condicoesContainer.appendChild(createLinkElement(item));
-            });
-          }
-
-          // Sorteio Extra
-          const sorteioContainer = document.getElementById('sorteio-extra-links');
-          if (sorteioContainer && config.sorteioExtra) {
-            config.sorteioExtra.forEach(item => {
-              sorteioContainer.appendChild(createLinkElement(item));
-            });
-          }
-        })
-        .catch(err => console.warn('Regulamento config not loaded:', err));
     })();
   </script>
 </body>
