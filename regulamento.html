@@ -15,55 +15,627 @@
   <script src="script/main.js"></script>
 
   <style>
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'Figtree', sans-serif; }
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .btn-primary { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(219, 21, 38, 0.3); }
-    .glass { backdrop-filter: blur(21px); background: rgba(255, 255, 255, 0.45); }
+    .btn-store { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-store:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); }
+    .glass { backdrop-filter: blur(21.9px); -webkit-backdrop-filter: blur(21.9px); background: rgba(255, 255, 255, 0.17); border: 1px solid rgba(255, 255, 255, 0); }
+    .glass-border-gradient { position: relative; }
+    .glass-border-gradient::before { content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .glass-border-gradient-grey { position: relative; border: none !important; }
+    .glass-border-gradient-grey::before { content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: linear-gradient(180deg, rgba(221,221,221,0) 0%, rgba(221,221,221,0.3) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .gradient-line { background: linear-gradient(90deg, #dc2626, #fde047 50%, #dc2626); }
+    .glass-card { backdrop-filter: blur(14.5px); -webkit-backdrop-filter: blur(14.5px); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(166, 163, 163, 0); }
+
+    /* Accordion */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out;
+    }
+    .accordion-btn { transition: background-color 0.2s ease; }
+    .accordion-btn:hover { background-color: #f9fafb; }
+    .accordion-icon { transition: transform 0.3s ease; }
+    .accordion-icon.open { transform: rotate(180deg); }
+
+    /* Bottom Nav */
+    .nav-central-wrapper { transition: transform 0.2s ease; }
+    .nav-central-btn { transition: box-shadow 0.2s ease; }
+    .nav-central-label { transition: color 0.2s ease; }
+    .nav-central-wrapper:hover { transform: translateX(-50%) scale(1.05); }
+    .nav-central-wrapper:hover .nav-central-btn { box-shadow: 0 8px 24px rgba(219, 21, 38, 0.4); }
+    .nav-central-wrapper:hover .nav-central-label { color: #DB1526; }
+
+    @keyframes bounce-attention {
+      0%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-8px); }
+      50% { transform: translateY(0); }
+      70% { transform: translateY(-5px); }
+      85% { transform: translateY(0); }
+    }
+    .nav-central-btn.bounce { animation: bounce-attention 0.7s ease-in-out; }
+
+    /* Mobile Menu */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu-overlay.active .mobile-menu-content {
+      transform: translateY(0);
+    }
+    .mobile-menu-content {
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+    body.menu-open {
+      overflow: hidden;
+    }
   </style>
 </head>
-<body class="min-h-screen bg-white text-text-body overflow-x-hidden">
+<body class="min-h-screen bg-[#f5f5f5] text-[#7b7d84] overflow-x-hidden">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 py-6">
-    <nav class="mx-auto flex items-center justify-center">
-      <div class="glass border border-white/10 rounded-full px-8 py-4 flex items-center gap-6">
-        <ul class="flex items-center gap-2">
-          <li><a href="index.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Início</a></li>
-          <li><a href="resultados.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Resultados</a></li>
-          <li><a href="ganhadores.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Ganhadores</a></li>
-        </ul>
-        <a href="index.html" class="mx-4">
-          <img src="images/logo.png" alt="Natal Cap" class="h-10 w-auto">
-        </a>
-        <ul class="flex items-center gap-2">
-          <li><a href="regulamento.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Regulamento</a></li>
-          <li><a href="index.html#comprar" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Comprar</a></li>
-          <li><a href="contato.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Contato</a></li>
-        </ul>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
+    <div class="absolute inset-0 bg-black/80" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-content relative flex flex-col items-center pt-[100px] pb-[140px] px-6 h-full">
+      <!-- Logo -->
+      <a href="index.html" class="mb-6">
+        <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[80px] h-auto">
+      </a>
+
+      <!-- Close Button -->
+      <button onclick="closeMobileMenu()" class="absolute top-[100px] right-6 w-[40px] h-[40px] flex items-center justify-center text-white/80 hover:text-white transition-colors">
+        <svg class="w-[28px] h-[28px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Menu Links -->
+      <nav class="flex flex-col items-center w-full max-w-[280px] gap-0">
+        <a href="index.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Início</a>
+        <a href="resultados.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Resultados</a>
+        <a href="instituicao-beneficiada.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Inst. Beneficiada</a>
+        <a href="regulamento.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Regulamento</a>
+        <a href="index.html#comprar" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Comprar</a>
+        <a href="contato.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider hover:text-secondary transition-colors">Contato</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative flex flex-col items-center pb-[80px] lg:pb-[120px] pt-[6px] lg:pt-2 px-[24px] lg:px-0">
+      <!-- Background -->
+      <div class="absolute inset-0 pointer-events-none">
+        <img src="images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0" style="background: linear-gradient(104deg, rgba(224, 46, 8, 0.49) 20%, rgba(195, 18, 0, 1) 59%);"></div>
       </div>
-    </nav>
-  </header>
 
-  <main class="pt-32">
-    <!-- Conteúdo aqui -->
+      <!-- Header Desktop -->
+      <header class="z-10 mt-6 mb-6 w-[1000px] max-w-full hidden lg:block">
+        <nav class="mx-auto flex items-center justify-center w-full">
+          <div class="glass glass-border-gradient rounded-full px-8 py-5 flex items-center justify-between gap-6 w-full max-w-full">
+            <ul class="flex items-center gap-2">
+              <li><a href="index.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Início</a></li>
+              <li><a href="resultados.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Resultados</a></li>
+              <li><a href="instituicao-beneficiada.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Inst. Beneficiada</a></li>
+            </ul>
+            <span class="w-[118px] relative">
+              <a href="index.html">
+                <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[118px] top-[-30px] fixed">
+              </a>
+            </span>
+            <ul class="flex items-center gap-2">
+              <li><a href="regulamento.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Regulamento</a></li>
+              <li><a href="index.html#comprar" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Comprar</a></li>
+              <li><a href="contato.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-[#fcc200] transition-colors">Contato</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Header Mobile -->
+      <header class="z-10 mb-[-6px] flex items-center justify-center lg:hidden w-full relative">
+        <a href="index.html" class="glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
+          <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[60px] h-[61px] object-contain">
+        </a>
+        <button id="mobile-menu-toggle" class="glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center absolute right-2">
+          <img src="images/icons/align-justify.svg" alt="Menu" class="w-[22px] h-[22px]">
+        </button>
+      </header>
+
+      <!-- Hero Content -->
+      <div class="relative flex flex-col gap-[12px] items-center max-w-[649px] text-center mt-[40px] lg:mt-[36px]">
+        <!-- Badge -->
+        <div class="backdrop-blur-[6px] bg-white/10 border border-white/20 rounded-full px-[11.5px] py-[4.5px]">
+          <span class="text-white/90 font-bold text-[16px]">Regulamento</span>
+        </div>
+        <!-- Title -->
+        <h1 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white">Regulamento e Condições Gerais</h1>
+        <!-- Subtitle -->
+        <p class="text-[16px] lg:text-[18px] font-medium leading-[1.6] text-white">Confira abaixo os regulamentos completos dos sorteios e as condições gerais.</p>
+      </div>
+    </section>
+
+    <!-- Accordion Section -->
+    <section class="relative px-[24px] lg:px-0 pb-[64px] lg:pb-[94px] mt-[-40px] lg:mt-[-70px]">
+      <div class="max-w-[784px] mx-auto flex flex-col gap-[16px]">
+
+        <!-- Accordion Item 1 - Regulamento Semanal -->
+        <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
+          <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
+            <div class="flex gap-[14px] items-center">
+              <div class="w-[35px] h-[35px] bg-[#f9fafb] border border-[#e5e5e6] rounded-full flex items-center justify-center">
+                <svg class="w-[20px] h-[20px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Regulamento Semanal</span>
+            </div>
+            <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6]">
+              <p class="text-[14px] text-[#7b7d84] leading-[1.6]">Clique&nbsp;<a href="https://l4-files.s3.sa-east-1.amazonaws.com/regulamento/natalcap.pdf" target="_blank" rel="noopener" class="font-bold text-[#db1526] hover:underline">aqui</a>&nbsp;para visualizar o regulamento do Título de Capitalização <b class="text-[#19191a]">NATAL CAP</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2 - Regulamento Produto "Natal Cap" -->
+        <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
+          <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
+            <div class="flex gap-[14px] items-center">
+              <div class="w-[35px] h-[35px] bg-[#f9fafb] border border-[#e5e5e6] rounded-full flex items-center justify-center">
+                <svg class="w-[20px] h-[20px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Regulamento Produto "Natal Cap"</span>
+            </div>
+            <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6]">
+              <p class="text-[14px] text-[#7b7d84] leading-[1.6] text-justify"><b class="text-[#19191a]">1. INTRODUÇÃO: A contratação deste título é apropriada principalmente na hipótese de o consumidor estar interessado em contribuir com entidades beneficentes de assistência sociais, certificadas nos termos da legislação vigente, e participar de sorteio(s).</b> Ao adquirir o <span class="text-[#19191a] font-semibold">NATAL CAP</span> – Título de Capitalização de Pagamento Único, da Modalidade Filantropia Premiável, emitido pela <b class="text-[#19191a]">KOVR Capitalização S.A. – KOVRCAP</b> (CNPJ n.º 93.202.448/0001-79; Av. Brigadeiro Faria Lima, 3477, 2º andar – Torre B, Itaim Bibi – São Paulo – SP – CEP 04538-133) – você concorrerá aos sorteios previstos neste Título e poderá ajudar na prestação de serviços de assistência nas diversas atividades da instituição, mediante a cessão da integralidade (100%) do direito de resgate do seu Título <span class="text-[#19191a] font-semibold">HOSPITAL INFANTIL VARELA SANTIAGO (08.337.586/0001-96; ENDEREÇO: Av Deodoro da Fonseca, 498, Centro, NATAL/RN)</span>. <b class="text-[#19191a]">1.1 Condições para Aquisição</b>: Poderão adquirir o <span class="text-[#19191a] font-semibold">NATAL CAP</span>, pelo preço indicado no anverso, as pessoas físicas, maiores de 16 (dezesseis) anos que preencherem, de forma legível, a ficha de cadastro da cautela. Antes de contratar, consulte previamente as Condições Gerais do Título, cuja versão completa está disponível para consulta no https://natalcap.com.br/. É proibida a venda de título de capitalização a menores de dezesseis anos – Art. 3.º, I do Código Civil. <b class="text-[#19191a]">2. NATUREZA DO TÍTULO</b>: Este Título de Capitalização foi aprovado pela Superintendência de Seguros Privados – SUSEP – através do Processo SUSEP indicado no anverso desta cautela. <b class="text-[#19191a]">A aprovação deste plano pela SUSEP, não implica, por parte da Autarquia, em incentivo ou recomendação à sua aquisição, representando, exclusivamente, sua adequação às normas em vigor</b>. <b class="text-[#19191a]">3. VIGÊNCIA</b>: A vigência do Título é de 2 meses. <b class="text-[#19191a]">4. RESGATE:</b> O valor do resgate estará disponível ao Titular após 2 meses de carência. O <span class="text-[#19191a] font-semibold">HOSPITAL INFANTIL VARELA SANTIAGO</span> receberá 100% do direito de resgate decorrente dos títulos cedidos, de acordo com suas Condições Gerais. Na hipótese de não haver cessão de resgate, o subscritor deverá realizar um cadastro complementar, acessando o <a href="https://portalcap.kovr.com.br/PortalCAP/Account/Index" target="_blank" rel="noopener" class="font-bold text-[#db1526] hover:underline">PortalCap</a>, para solicitar seu resgate. <b class="text-[#19191a]">5. SORTEIOS:</b> Ao adquirir o <span class="text-[#19191a] font-semibold">NATAL CAP</span> você concorrerá nos sorteios previstos no Título, divididos em 2 modalidades distintas. <b class="text-[#19191a]">Os títulos contemplados em qualquer uma das modalidades previstas serão resgatados e não concorrerão aos próximos sorteios</b>. <b class="text-[#19191a]">5.1. Sorteios da Modalidade "Globo Premiado":</b> Cada título contém impressos, replicados para cada um dos sorteios, os conjuntos de 20 dezenas aleatórias e sem repetição entre si, compreendidas de 01 a 60. Para a apuração do Título contemplado será utilizado um globo contendo 60 bolas numeradas de 01 a 60. Desse globo serão retiradas aleatoriamente tantas bolas quantas sejam necessárias, uma de cada vez e pausadamente, sem reposição das bolas, até que um ou mais Títulos tenham um conjunto com todas as suas 20 dezenas sorteadas. Os Títulos contemplados em cada um dos sorteios farão jus ao respectivo prêmio indicado no anverso. <b class="text-[#19191a]">Havendo mais de um Título contemplado em cada sorteio, o prêmio sorteado será rateado pela quantidade de títulos que tiveram contemplação, em partes iguais. 5.2. Sorteios da Modalidade "Giro Premiado":</b> Cada Título contém impresso os conjuntos, distintos dos demais, de 03 (três) dezenas aleatórias compreendidas entre 00 e 99, onde a ordem das dezenas importa para a combinação dos sorteios, podendo haver repetição das dezenas em um mesmo conjunto. Para a apuração dos Títulos sorteados em cada sorteio será utilizado um sistema randômico onde serão sorteadas, em ordem, a primeira, a segunda e a terceira dezena compreendidas de 00 a 99, distribuídas na série, que identificarão o conjunto de dezenas dos títulos contemplados em cada sorteio desta modalidade, que farão jus aos prêmios indicados no anverso. Vide mais informações nas Condições Gerais do Título. <b class="text-[#19191a]">Probabilidades: As probabilidades de contemplação podem variar em cada edição, estando informadas no verso dos Títulos comercializados. 6. LOCAL DO SORTEIO:</b> Os sorteios das Modalidades <b class="text-[#19191a]">"Globo Premiado"</b> e <b class="text-[#19191a]">"Giro Premiado"</b> serão realizados pela <b class="text-[#19191a]">KOVRCAP</b>, na presença de Auditor Independente, nas dependências da <span class="text-[#19191a] font-semibold">Rua Presidente Quaresma, 997, Alecrim, Natal/RN</span>. no horário e dia indicados no anverso. O local da realização do sorteio é de livre acesso aos adquirentes do <span class="text-[#19191a] font-semibold">NATAL CAP</span>. <b class="text-[#19191a]">7. REQUISITOS PARA PAGAMENTO DA PREMIAÇÃO:</b> Para o recebimento do prêmio, o adquirente do Título sorteado deverá comparecer na <span class="text-[#19191a] font-semibold">Av. Nilo Peçanha</span>, 239, Petrópolis, Natal/RN. munido do Título original contemplado, em perfeito estado de conservação; cópia simples do seu RG; do CPF e de comprovante de residência emitido a menos de 90 (noventa) dias. A <b class="text-[#19191a]">KOVRCAP</b> pagará o prêmio em até 15 (quinze) dias corridos, contados da apresentação da documentação exigida.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 3 - Condições Gerais & Processos SUSEP (Open by default) -->
+        <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
+          <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
+            <div class="flex gap-[14px] items-center">
+              <div class="w-[35px] h-[35px] bg-[#f9fafb] border border-[#e5e5e6] rounded-full flex items-center justify-center">
+                <svg class="w-[20px] h-[20px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Condições Gerais & Processos SUSEP</span>
+            </div>
+            <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6] flex flex-col gap-[16px] lg:gap-[21px]">
+              <p class="text-[14px] text-[#7b7d84] leading-[1.6]">
+                As condições contratuais deste produto protocolizadas pela KOVR Capitalização S.A. junto à SUSEP poderão ser consultadas no endereço eletrônico www.susep.gov.br, de acordo com o número de processo constante da proposta, <a href="https://www.susep.gov.br" target="_blank" class="font-bold text-[#db1526] underline">neste link aqui</a>.
+              </p>
+
+              <!-- SUSEP Box -->
+              <div class="bg-[#f9fafb] border border-[#e5e5e6] rounded-[16px] p-[17px] flex flex-col gap-[8px]">
+                <h4 class="text-[20px] font-bold text-[#19191a] leading-[1.4]">Processo SUSEP Nº:</h4>
+                <p class="text-[14px] text-[#7b7d84] leading-[1.6]">Clique nos números abaixo para visualizar o documento PDF:</p>
+
+                <!-- Links Grid - Mobile: 1 column, Desktop: 3 columns -->
+                <div class="flex flex-col lg:grid lg:grid-cols-3 gap-[12px]">
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901263/2019-61</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901264/2019-14</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901290/2019-34</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901662/2019-22</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901663/2019-77</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901664/2019-11</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.902143/2019-81</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.902144/2019-26</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.902145/2019-71</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 4 - Condições Gerais - Sorteio Extra -->
+        <div class="bg-white rounded-[16px] shadow-[0_1px_2px_rgba(0,0,0,0.05)] overflow-hidden">
+          <button class="accordion-btn w-full p-[16px] lg:p-[24px] flex items-center justify-between" onclick="toggleAccordion(this)">
+            <div class="flex gap-[14px] items-center">
+              <div class="w-[35px] h-[35px] bg-[#f9fafb] border border-[#e5e5e6] rounded-full flex items-center justify-center">
+                <svg class="w-[20px] h-[20px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <span class="text-[20px] font-bold text-[#19191a] leading-[1.4] text-left">Condições Gerais - Sorteio Extra</span>
+            </div>
+            <svg class="accordion-icon w-[24px] h-[24px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="p-[16px] lg:p-[24px] border-t border-[#e5e5e6]">
+              <!-- SUSEP Box -->
+              <div class="bg-[#f9fafb] border border-[#e5e5e6] rounded-[16px] p-[17px] flex flex-col gap-[8px]">
+                <h4 class="text-[20px] font-bold text-[#19191a] leading-[1.4]">Processo SUSEP Nº:</h4>
+                <p class="text-[14px] text-[#7b7d84] leading-[1.6]">Clique nos números abaixo para visualizar o documento PDF:</p>
+
+                <!-- Links Grid - Mobile: 1 column, Desktop: 2 columns -->
+                <div class="flex flex-col lg:grid lg:grid-cols-2 gap-[12px]">
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901263/2019-61</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors">
+                    <span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">15414.901264/2019-14</span>
+                    <svg class="w-[14px] h-[14px] text-[#7b7d84]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA App Section -->
+    <section class="relative py-[72px] lg:py-[96px] px-[24px] lg:px-0 overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none">
+        <img src="images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-[rgba(219,21,38,0.6)]"></div>
+      </div>
+      <div class="relative max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-[32px]">
+        <!-- Imagem (mobile: primeiro) -->
+        <div class="fade-in w-full lg:hidden aspect-[1841/805] rounded-[16px] overflow-hidden">
+          <img src="images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="fade-in-left flex-1 flex flex-col gap-[24px] lg:gap-[40px]">
+          <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white w-[284px] lg:w-auto">Compre também pelo aplicativo do Natal Cap!</h2>
+          <div class="flex gap-[24px]">
+            <a href="#" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[61px] flex items-center gap-[8px]">
+              <img src="images/shared/google-play-icon.svg" alt="Google Play">
+            </a>
+            <a href="#" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[60px] flex items-center gap-[8px]">
+              <img src="images/shared/apple-icon.svg" alt="Apple Store">
+            </a>
+          </div>
+        </div>
+
+        <!-- Imagem (desktop) -->
+        <div class="fade-in-right hidden lg:block w-[696px] h-[304px] rounded-[24px] overflow-hidden">
+          <img src="images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-bg-light pt-16 px-4 md:px-8 lg:px-[112px]">
+  <div class="h-1 gradient-line w-full"></div>
+
+  <footer class="bg-[#f9fafb] pt-16 px-4 md:px-8 lg:px-[112px] relative z-2">
     <div class="max-w-[1216px] mx-auto">
-      <div class="border-t border-border-light py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <span class="text-xs text-text-body">© 2026 Natal Cap. Todos os direitos reservados.</span>
-        <div class="flex items-center gap-2.5">
-          <span class="text-xs text-text-body">Desenvolvido por</span>
-          <img src="images/logo-maatz.png" alt="Maatz" class="h-6 w-auto">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
+        <div class="flex flex-wrap items-center gap-8 mx-auto lg:mx-0 text-center">
+          <div class="w-[180px] mt-[-96px] mx-auto lg:mx-0 bg-gray-700">
+            <img src="images/footer-titulo.png" alt="Natal Cap Título" class="w-full h-full object-cover object-top">
+          </div>
+
+          <div class="flex flex-col w-full lg:w-auto lg:flex-row gap-8 items-start justify-center">
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Realização</span>
+              <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="h-[67px] w-auto">
+            </div>
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Entidade Beneficiada</span>
+              <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Varela Santiago" class="h-[64px] w-auto">
+            </div>
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-[#7b7d84] uppercase tracking-wider">Título emitido pela</span>
+              <div class="bg-white rounded-lg p-1">
+                <img src="images/logo-kovr.png" alt="KOVR" class="h-[55px] w-auto">
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="flex gap-3 mt-8 lg:mt-0 mx-auto lg:mx-0">
+          <a href="#" aria-label="Instagram" class="w-8 h-8 bg-[#db1526] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M11 5.5C8.24 5.5 6 7.74 6 10.5C6 13.26 8.24 15.5 11 15.5C13.76 15.5 16 13.26 16 10.5C16 7.74 13.76 5.5 11 5.5ZM11 13.5C9.34 13.5 8 12.16 8 10.5C8 8.84 9.34 7.5 11 7.5C12.66 7.5 14 8.84 14 10.5C14 12.16 12.66 13.5 11 13.5Z" fill="white"/><path d="M16.5 5.5C17.0523 5.5 17.5 5.05228 17.5 4.5C17.5 3.94772 17.0523 3.5 16.5 3.5C15.9477 3.5 15.5 3.94772 15.5 4.5C15.5 5.05228 15.9477 5.5 16.5 5.5Z" fill="white"/><path d="M19.5 1.5C18.5 0.5 17 0 15 0H7C5 0 3.5 0.5 2.5 1.5C1.5 2.5 1 4 1 6V15C1 17 1.5 18.5 2.5 19.5C3.5 20.5 5 21 7 21H15C17 21 18.5 20.5 19.5 19.5C20.5 18.5 21 17 21 15V6C21 4 20.5 2.5 19.5 1.5ZM19 15C19 16.5 18.5 17.5 18 18C17.5 18.5 16.5 19 15 19H7C5.5 19 4.5 18.5 4 18C3.5 17.5 3 16.5 3 15V6C3 4.5 3.5 3.5 4 3C4.5 2.5 5.5 2 7 2H15C16.5 2 17.5 2.5 18 3C18.5 3.5 19 4.5 19 6V15Z" fill="white"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="w-8 h-8 bg-[#db1526] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M12 21V11H15L15.5 7.5H12V5.5C12 4.5 12.5 3.5 14 3.5H15.5V0.5C15.5 0.5 14.2 0 13 0C10.5 0 9 1.5 9 4.5V7.5H5.5V11H9V21H12Z" fill="white"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="w-8 h-8 bg-[#db1526] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M21 6C20.9 4.5 20.5 3.5 19.5 2.8C18.5 2 17 2 11 2C5 2 3.5 2 2.5 2.8C1.5 3.5 1.1 4.5 1 6C0.9 7.5 0.9 9 0.9 10.5C0.9 12 0.9 13.5 1 15C1.1 16.5 1.5 17.5 2.5 18.2C3.5 19 5 19 11 19C17 19 18.5 19 19.5 18.2C20.5 17.5 20.9 16.5 21 15C21.1 13.5 21.1 12 21.1 10.5C21.1 9 21.1 7.5 21 6ZM9 14V7L14.5 10.5L9 14Z" fill="white"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-b border-[#e5e5e6] py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-lg font-bold text-[#db1526] mb-4">Navegação</h4>
+          <ul class="flex flex-col gap-2">
+            <li><a href="resultados.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Resultados</a></li>
+            <li><a href="ganhadores.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Ganhadores</a></li>
+            <li><a href="index.html#comprar" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Comprar Título</a></li>
+            <li><a href="#" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Baixar App</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-[#db1526] mb-4">Legal</h4>
+          <ul class="flex flex-col gap-2">
+            <li><a href="#" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Condições Gerais</a></li>
+            <li><a href="regulamento.html" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Regulamento</a></li>
+            <li><a href="#" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Política de Privacidade</a></li>
+            <li><a href="#" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">Termos de Uso</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-[#db1526] mb-4">Fale Conosco</h4>
+          <div class="flex flex-col gap-2">
+            <span class="text-sm text-[#7b7d84]">Segunda a Sexta: 8h às 18h</span>
+            <a href="tel:+558432026000" class="text-xl font-bold text-[#19191a] hover:text-[#db1526] transition-colors">(84) 3202-6000</a>
+            <a href="mailto:atendimento@natalcap.com.br" class="text-sm text-[#7b7d84] hover:text-[#db1526] transition-colors">atendimento@natalcap.com.br</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-[#db1526] mb-4">Endereço</h4>
+          <div class="flex flex-col gap-3">
+            <span class="text-sm text-[#7b7d84]">Av. Nilo Peçanha, 239 - Petrópolis - Natal/RN</span>
+            <a href="#" class="text-base font-semibold text-[#19191a] inline-flex items-center gap-2 hover:text-[#db1526] transition-colors">
+              Ver no mapa
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H3.5M8.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="py-6 flex flex-col gap-3">
+        <p class="text-sm font-bold text-[#db1526]">É proibida a venda de títulos de capitalização a menores de dezesseis anos.</p>
+        <p class="text-xs font-bold text-[#19191a]">VOCÊ PODE AJUDAR O HOSPITAL INFANTIL VARELA SANTIAGO COMPRANDO O NATAL CAP E CEDENDO O DIREITO DE RESGATE</p>
+        <p class="text-xs text-[#7b7d84] leading-[1.6]">Sorteios decorrentes de Títulos de Capitalização de Pagamento Único, da Modalidade Filantropia Premiável, emitidos pela KOVR Capitalização. Você pode ajudar o HOSPITAL INFANTIL VARELA SANTIAGO comprando o Natal Cap e cedendo o direito de resgate. A aprovação deste Título pela SUSEP não implica, por parte da Autarquia, em incentivo ou recomendação a sua aquisição, representando exclusivamente, sua adequação às normas em vigor. Antes de contratar, consulte previamente as Condições Gerais.</p>
+      </div>
+      <div class="border-t border-[#e5e5e6] py-8 pb-24 flex flex-col md:flex-row items-center justify-between gap-4">
+        <span class="text-xs text-[#7b7d84]">© <script>document.write(new Date().getFullYear())</script> Natal Cap. Todos os direitos reservados.</span>
+        <a href="https://maatz.com.br/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+          <span class="text-xs text-[#7b7d84]">Desenvolvido por</span>
+          <img src="images/shared/maatz-logo.png" alt="Maatz" class="h-6 w-auto">
+        </a>
       </div>
     </div>
   </footer>
 
+  <!-- Fixed Bottom Navbar -->
+  <nav class="fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px]" style="bottom: max(16px, env(safe-area-inset-bottom, 16px))">
+    <!-- Botão central elevado + label -->
+    <a href="index.html#comprar" id="btn-nav-central" class="nav-central-wrapper absolute top-[-32px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
+      <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px]">
+        <div class="bg-[#db1526] w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+        </div>
+      </div>
+      <span class="nav-central-label text-xs font-semibold text-black tracking-wide mt-1">Comprar título</span>
+    </a>
+
+    <div class="backdrop-blur-[16px] bg-white/70 border border-black/5 rounded-full p-1.5 shadow-[0_-5px_24px_rgba(0,0,0,0.03)]">
+      <div class="flex items-center justify-between px-6 h-14">
+        <!-- Meus bilhetes -->
+        <a href="#" class="flex flex-col items-center justify-center gap-1 flex-1 text-black hover:text-[#db1526] transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          <span class="text-xs font-semibold tracking-wide">Meus bilhetes</span>
+        </a>
+
+        <!-- Espaço central (onde fica o botão elevado) -->
+        <div class="flex-1"></div>
+
+        <!-- Resultados -->
+        <a href="resultados.html" class="flex flex-col items-center justify-center gap-1 flex-1 text-black hover:text-[#db1526] transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v4"/><path d="M16 2v4"/>
+            <rect width="18" height="18" x="3" y="4" rx="2"/>
+            <path d="M3 10h18"/>
+            <path d="m9 16 2 2 4-4"/>
+          </svg>
+          <span class="text-xs font-semibold tracking-wide">Resultados</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Animation Script -->
   <script src="script/animate.js"></script>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      document.body.classList.add('menu-open');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+  </script>
+
+  <!-- Accordion Script -->
+  <script>
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.accordion-icon');
+      const isOpen = content.classList.contains('open');
+
+      if (isOpen) {
+        // Fechando: primeiro define o max-height atual, depois anima para 0
+        content.style.maxHeight = content.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          content.style.maxHeight = '0';
+        });
+        content.classList.remove('open');
+        icon.classList.remove('open');
+      } else {
+        // Abrindo: anima para o scrollHeight real
+        content.classList.add('open');
+        icon.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+
+        // Remove o max-height inline após a transição para permitir resize
+        content.addEventListener('transitionend', function handler() {
+          if (content.classList.contains('open')) {
+            content.style.maxHeight = 'none';
+          }
+          content.removeEventListener('transitionend', handler);
+        });
+      }
+    }
+  </script>
+
+  <!-- Botão Central Bounce Animation -->
+  <script>
+    (function() {
+      const btn = document.querySelector('.nav-central-btn');
+      if (!btn) return;
+
+      function doBounce() {
+        btn.classList.add('bounce');
+        setTimeout(() => btn.classList.remove('bounce'), 700);
+      }
+
+      function triggerDoubleBounce() {
+        doBounce();
+        setTimeout(doBounce, 800);
+      }
+
+      setInterval(triggerDoubleBounce, 5000);
+      setTimeout(triggerDoubleBounce, 2000);
+    })();
+  </script>
 </body>
 </html>

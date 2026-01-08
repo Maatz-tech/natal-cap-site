@@ -17,7 +17,7 @@
   <script src="script/main.js"></script>
 
   <style>
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'Figtree', sans-serif; }
 
     /* Animations */
@@ -85,10 +85,62 @@
       85% { transform: translateY(0); }
     }
     .nav-central-btn.bounce { animation: bounce-attention 0.7s ease-in-out; }
+
+    /* Mobile Menu */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu-overlay.active .mobile-menu-content {
+      transform: translateY(0);
+    }
+    .mobile-menu-content {
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+    body.menu-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-white text-text-body overflow-x-hidden">
 
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
+    <div class="absolute inset-0 bg-black/80" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-content relative flex flex-col items-center pt-[100px] pb-[140px] px-6 h-full">
+      <!-- Logo -->
+      <a href="index.html" class="mb-6">
+        <img src="images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[80px] h-auto">
+      </a>
+
+      <!-- Close Button -->
+      <button onclick="closeMobileMenu()" class="absolute top-[100px] right-6 w-[40px] h-[40px] flex items-center justify-center text-white/80 hover:text-white transition-colors">
+        <svg class="w-[28px] h-[28px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Menu Links -->
+      <nav class="flex flex-col items-center w-full max-w-[280px] gap-0">
+        <a href="index.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Início</a>
+        <a href="resultados.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Resultados</a>
+        <a href="instituicao-beneficiada.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Inst. Beneficiada</a>
+        <a href="regulamento.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Regulamento</a>
+        <a href="#comprar" onclick="closeMobileMenu()" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Comprar</a>
+        <a href="contato.html" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider hover:text-secondary transition-colors">Contato</a>
+      </nav>
+    </div>
+  </div>
 
   <main>
     <!-- Hero Section -->
@@ -100,7 +152,7 @@
             <ul class="flex items-center gap-2">
               <li><a href="index.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Início</a></li>
               <li><a href="resultados.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Resultados</a></li>
-              <li><a href="ganhadores.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Ganhadores</a></li>
+              <li><a href="instituicao-beneficiada.html" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Inst. Beneficiada</a></li>
             </ul>
 
             <span class="w-[118px] relative">
@@ -154,7 +206,7 @@
           </div>
 
           <!-- Card Glass com Logo -->
-          <div class="parallax-card absolute left-[-8px] top-1/2 -translate-y-1/2 w-[158px] h-[104px] glass-2 glass-border-gradient-grey glass-border-gradient-grey-2 rounded-xl p-3 flex items-center justify-center">
+          <div class="parallax-card absolute left-[-8px] top-[16px] w-[158px] h-[104px] glass-2 glass-border-gradient-grey glass-border-gradient-grey-2 rounded-xl p-3 flex items-center justify-center">
             <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Infantil Varela Santiago" class="max-w-full max-h-full object-contain">
           </div>
         </div>
@@ -180,7 +232,7 @@
             <img src="images/home/institucional-thumb.png" alt="Hospital Varela Santiago" class="w-full h-full object-cover">
           </div>
           <!-- Card Glass com Logo -->
-          <div class="parallax-card absolute left-[-43px] top-1/2 -translate-y-1/2 w-[248px] h-[162px] glass-2 glass-border-gradient-grey glass-border-gradient-grey-2 rounded-[20px] p-5 flex items-center justify-center">
+          <div class="parallax-card absolute left-[-43px] top-[56px] w-[248px] h-[162px] glass-2 glass-border-gradient-grey glass-border-gradient-grey-2 rounded-[20px] p-5 flex items-center justify-center">
             <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Infantil Varela Santiago" class="max-w-full max-h-full object-contain">
           </div>
         </div>
@@ -591,6 +643,31 @@
   <!-- Animation Script -->
   <script src="script/animate.js"></script>
 
+  <!-- Mobile Menu Script -->
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      document.body.classList.add('menu-open');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+  </script>
+
   <!-- Video Lightbox Script -->
   <script>
     (function() {
@@ -681,7 +758,7 @@
           const offset = relativePosition * 140;
           const scale = 1 + (1 - Math.abs(relativePosition)) * 0.08;
 
-          card.style.transform = `translateY(calc(-50% + ${offset}px)) scale(${scale})`;
+          card.style.transform = `translateY(${offset}px) scale(${scale})`;
         });
       }
 
