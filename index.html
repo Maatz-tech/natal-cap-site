@@ -92,7 +92,7 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="relative flex flex-col items-center pb-24 pt-[6px] lg:pt-2 px-4">
+    <section class="relative flex flex-col items-center pb-16 lg:pb-24 pt-[6px] lg:pt-2 px-4">
       <!-- Header -->
       <header class="z-10 mt-6 mb-6 w-[1000px] max-w-full hidden lg:block">
         <nav class="mx-auto flex items-center justify-center w-full">
@@ -288,7 +288,7 @@
             <img src="images/icons/play-icon.svg" alt="Play" class="w-6 lg:w-9 h-auto ml-1">
           </button>
           <!-- Caption Glass -->
-          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass glass-border-gradient-grey rounded-[20px] p-5 flex items-center justify-between">
+          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass glass-border-gradient-grey rounded-[12px] lg:rounded-[20px] p-[10px] lg:p-5 flex items-center justify-between">
             <span class="text-white font-bold text-sm lg:text-lg">Premiação - Sorteio do dia 11/01</span>
             <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] text-white" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 13L13 5M13 5H5M13 5V13"/>
@@ -306,7 +306,7 @@
             <img src="images/icons/play-icon.svg" alt="Play" class="w-6 lg:w-9 h-auto ml-1">
           </button>
           <!-- Caption Glass -->
-          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass glass-border-gradient-grey rounded-[20px] p-5 flex items-center justify-between">
+          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass glass-border-gradient-grey rounded-[12px] lg:rounded-[20px] p-[10px] lg:p-5 flex items-center justify-between">
             <span class="text-white font-bold text-sm lg:text-lg">Ganhadores do Sorteio | Dia 14/12</span>
             <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] text-white" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 13L13 5M13 5H5M13 5V13"/>
@@ -678,7 +678,7 @@
           const viewportCenter = windowHeight / 2;
           const relativePosition = (elementCenter - viewportCenter) / windowHeight;
 
-          const offset = relativePosition * 80;
+          const offset = relativePosition * 140;
           const scale = 1 + (1 - Math.abs(relativePosition)) * 0.08;
 
           card.style.transform = `translateY(calc(-50% + ${offset}px)) scale(${scale})`;
