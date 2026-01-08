@@ -41,14 +41,15 @@
     .btn-store { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     .btn-store:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); }
 
-    .btn-play { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .btn-play:hover { transform: translate(-50%, -50%) translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); }
+    .btn-play { transition: transform 0.3s ease, box-shadow 0.3s ease; }
 
-    .video-card { transition: filter 0.3s ease; }
-    .video-card:hover { filter: brightness(1.08); }
-    .video-card:hover .btn-play { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); }
+    .video-card { overflow: hidden; }
+    .video-card img { transition: transform 0.4s ease; }
+    .video-card:hover img { transform: scale(1.05); }
+    .video-card:hover .btn-play { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35); }
 
     .glass { backdrop-filter: blur(21.9px); -webkit-backdrop-filter: blur(21.9px); background: rgba(255, 255, 255, 0.17); border: 1px solid rgba(255, 255, 255, 0); }
+    .glass-2 { backdrop-filter: blur(21.9px); -webkit-backdrop-filter: blur(21.9px); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(255, 255, 255, 0); }
     .glass-border-gradient { position: relative; }
     .glass-border-gradient::before { content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .glass-border-gradient-grey { position: relative; border: none !important; }
@@ -64,6 +65,26 @@
     .video-thumb { cursor: pointer; }
     .glass-card { backdrop-filter: blur(14.5px); -webkit-backdrop-filter: blur(14.5px); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(166, 163, 163, 0); }
     .gradient-line { background: linear-gradient(90deg, #dc2626, #fde047 50%, #dc2626); }
+
+    /* Bottom Nav - Botão Central */
+    .parallax-card { transition: transform 0.1s ease-out; }
+
+    .nav-central-wrapper { transition: transform 0.2s ease; }
+    .nav-central-btn { transition: box-shadow 0.2s ease; }
+    .nav-central-label { transition: color 0.2s ease; }
+    .nav-central-wrapper:hover { transform: translateX(-50%) scale(1.05); }
+    .nav-central-wrapper:hover .nav-central-btn { box-shadow: 0 8px 24px rgba(219, 21, 38, 0.4); }
+    .nav-central-wrapper:hover .nav-central-label { color: #DB1526; }
+
+    /* Animação de atenção - pulinho (só no botão) */
+    @keyframes bounce-attention {
+      0%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-8px); }
+      50% { transform: translateY(0); }
+      70% { transform: translateY(-5px); }
+      85% { transform: translateY(0); }
+    }
+    .nav-central-btn.bounce { animation: bounce-attention 0.7s ease-in-out; }
   </style>
 </head>
 <body class="min-h-screen bg-white text-text-body overflow-x-hidden">
@@ -133,7 +154,7 @@
           </div>
 
           <!-- Card Glass com Logo -->
-          <div class="absolute left-[-8px] top-1/2 -translate-y-1/2 w-[158px] h-[104px] glass glass-border-gradient-grey glass-border-gradient-grey-2 rounded-xl p-3 flex items-center justify-center">
+          <div class="parallax-card absolute left-[-8px] top-1/2 -translate-y-1/2 w-[158px] h-[104px] glass-2 glass-border-gradient-grey glass-border-gradient-grey-2 rounded-xl p-3 flex items-center justify-center">
             <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Infantil Varela Santiago" class="max-w-full max-h-full object-contain">
           </div>
         </div>
@@ -159,7 +180,7 @@
             <img src="images/home/institucional-thumb.png" alt="Hospital Varela Santiago" class="w-full h-full object-cover">
           </div>
           <!-- Card Glass com Logo -->
-          <div class="absolute left-[-43px] top-1/2 -translate-y-1/2 w-[248px] h-[162px] glass glass-border-gradient-grey glass-border-gradient-grey-2 rounded-[20px] p-5 flex items-center justify-center">
+          <div class="parallax-card absolute left-[-43px] top-1/2 -translate-y-1/2 w-[248px] h-[162px] glass-2 glass-border-gradient-grey glass-border-gradient-grey-2 rounded-[20px] p-5 flex items-center justify-center">
             <img src="images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Infantil Varela Santiago" class="max-w-full max-h-full object-contain">
           </div>
         </div>
@@ -172,13 +193,11 @@
       <div class="max-w-[1216px] mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
 
         <!-- Vídeo/Imagem -->
-        <div class="video-card video-thumb fade-in-left relative w-full lg:w-[590px] aspect-video rounded-[20px] lg:rounded-[32px] overflow-hidden shrink-0 bg-gray-200" data-video-id="VIDEO_SORTEIO_ID">
+        <div class="video-card video-thumb fade-in-left relative w-full lg:w-[590px] aspect-video rounded-[20px] lg:rounded-[32px] overflow-hidden shrink-0 bg-gray-200" data-video-id="Sgxbx65IDeM">
           <img src="images/home/thumb-sorteio.png" alt="Sorteio ao vivo" class="w-full h-full object-cover">
           <!-- Play Button -->
-          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[94px] lg:h-[94px] glass glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
-            <svg class="w-6 h-6 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
+          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] glass-2 glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <img src="images/icons/play-icon.svg" alt="Play" class="w-6 lg:w-9 h-auto ml-1">
           </button>
         </div>
 
@@ -211,16 +230,16 @@
               <span class="text-white font-semibold text-lg">Rede de Transmissão do Natal Cap</span>
             </div>
             <div class="flex gap-[5px] items-center relative z-20">
-              <div class="glass-card glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
+              <div class="glass-2 glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
                 <img src="images/shared/tv-ponta-negra-logo.png" alt="TV Ponta Negra" class="max-w-full max-h-full object-contain">
               </div>
-              <div class="glass-card glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
+              <div class="glass-2 glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
                 <img src="images/shared/tv-tropical.png" alt="TV Tropical" class="max-w-full max-h-full object-contain">
               </div>
-              <div class="glass-card glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
+              <div class="glass-2 glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
                 <img src="images/shared/mais-fm-logo.png" alt="95 Mais FM" class="max-w-full max-h-full object-contain">
               </div>
-              <div class="glass-card glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
+              <div class="glass-2 glass-border-gradient-grey w-[81px] h-[81px] p-3 flex items-center justify-center rounded-[13.5px]">
                 <img src="images/shared/telepesquisa-logo.png" alt="Telepesquisa" class="max-w-full max-h-full object-contain">
               </div>
             </div>
@@ -239,28 +258,34 @@
       <div class="absolute inset-0 bg-secondary/60"></div>
     </div>
 
-    <div class="relative max-w-[1216px] mx-auto flex flex-col gap-12 items-center">
+    <div class="relative max-w-[1216px] mx-auto flex flex-col gap-10 lg:gap-12 items-center">
       <!-- Header -->
-      <div class="fade-in flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 w-full">
-        <h2 class="text-[28px] lg:text-[36px] font-bold leading-[1.3] text-text-heading lg:w-[405px]">Premiação e ganhadores</h2>
-        <div class="flex flex-col gap-4 lg:w-[340px]">
+      <div class="fade-in flex flex-col gap-6 w-full lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex flex-col gap-6 lg:hidden">
           <div class="w-[34px] h-1 bg-primary rounded-full"></div>
-          <p class="text-base lg:text-lg text-text-heading leading-[1.6]">Veja a premiação da semana e quem já mudou de vida comprando o Natal Cap.</p>
+
+          <div class="flex flex-col gap-4">
+            <h2 class="text-[32px] font-bold leading-[1.2] text-text-heading">Premiação e ganhadores</h2>
+            <p class="text-lg text-text-heading leading-[1.6]">Veja a premiação da semana e quem já mudou de vida comprando o Natal Cap.</p>
+          </div>
+        </div>
+        <h2 class="hidden lg:block text-[40px] font-bold leading-[1.2] text-text-heading lg:w-[405px]">Premiação e ganhadores</h2>
+        <div class="hidden lg:flex flex-col gap-6 lg:gap-8 lg:w-[340px]">
+          <div class="w-[34px] h-1 bg-primary rounded-full"></div>
+          <p class="text-lg text-text-heading leading-[1.6]">Veja a premiação da semana e quem já mudou de vida comprando o Natal Cap.</p>
         </div>
       </div>
 
       <!-- Cards de Vídeo -->
       <div class="flex flex-col lg:flex-row gap-6 lg:gap-9 w-full">
         <!-- Card Premiação -->
-        <div class="video-card video-thumb fade-in delay-100 relative flex-1 aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl bg-gray-700" data-video-id="VIDEO_PREMIACAO_ID">
+        <div class="video-card video-thumb fade-in delay-100 relative flex-1 aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl bg-gray-700" data-video-id="Sgxbx65IDeM">
           <img src="images/home/thumb-premiacao.png" alt="Premiação" class="absolute inset-0 w-full h-full object-cover">
           <!-- Overlay -->
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50"></div>
           <!-- Play Button -->
-          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] lg:w-[94px] lg:h-[94px] glass glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
-            <svg class="w-8 h-8 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
+          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] glass-2 glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <img src="images/icons/play-icon.svg" alt="Play" class="w-6 lg:w-9 h-auto ml-1">
           </button>
           <!-- Caption Glass -->
           <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass glass-border-gradient-grey rounded-[20px] p-5 flex items-center justify-between">
@@ -272,15 +297,13 @@
         </div>
 
         <!-- Card Ganhadores -->
-        <div class="video-card video-thumb fade-in delay-200 relative flex-1 aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl bg-gray-700" data-video-id="VIDEO_GANHADORES_ID">
+        <div class="video-card video-thumb fade-in delay-200 relative flex-1 aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl bg-gray-700" data-video-id="Sgxbx65IDeM">
           <img src="images/home/thumb-ganhadores.png" alt="Ganhadores" class="absolute inset-0 w-full h-full object-cover">
           <!-- Overlay -->
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50"></div>
           <!-- Play Button -->
-          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] lg:w-[94px] lg:h-[94px] glass glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
-            <svg class="w-8 h-8 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
+          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] glass-2 glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <img src="images/icons/play-icon.svg" alt="Play" class="w-6 lg:w-9 h-auto ml-1">
           </button>
           <!-- Caption Glass -->
           <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] glass glass-border-gradient-grey rounded-[20px] p-5 flex items-center justify-between">
@@ -293,15 +316,17 @@
       </div>
 
       <!-- Botão CTA -->
-      <div class="fade-in delay-300">
-        <a href="ganhadores.html" class="btn-primary bg-primary border border-primary rounded-full pl-6 pr-2 py-2 h-[60px] inline-flex items-center gap-3.5 text-white font-semibold text-lg">
-          Veja todos os ganhadores
-          <span class="bg-white rounded-full p-4 flex items-center justify-center">
-            <svg class="w-[18px] h-[18px] text-text-heading" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 13L13 5M13 5H5M13 5V13"/>
-            </svg>
-          </span>
-        </a>
+      <div class="w-full">
+        <div class="fade-in delay-300">
+          <a href="ganhadores.html" class="btn-primary bg-primary border border-primary rounded-full pl-6 pr-2 py-2 h-[60px] inline-flex items-center gap-3.5 text-white font-semibold text-lg">
+            Veja todos os ganhadores
+            <span class="bg-white rounded-full p-4 flex items-center justify-center">
+              <svg class="w-[18px] h-[18px] text-text-heading" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 13L13 5M13 5H5M13 5V13"/>
+              </svg>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -312,12 +337,10 @@
       <!-- Vídeo + Texto -->
       <div class="flex flex-col lg:flex-row gap-8 lg:gap-[76px] items-center">
         <!-- Thumbnail do Vídeo -->
-        <div class="video-card video-thumb fade-in-left relative w-full lg:w-[590px] aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shrink-0 bg-gray-700" data-video-id="VIDEO_PIX_ID">
+        <div class="video-card video-thumb fade-in-left relative w-full lg:w-[590px] aspect-video rounded-2xl lg:rounded-3xl overflow-hidden shrink-0 bg-gray-700" data-video-id="Sgxbx65IDeM">
           <img src="images/home/thumb-pix.png" alt="Como comprar via PIX" class="w-full h-full object-cover">
-          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[62px] h-[62px] lg:w-[94px] lg:h-[94px] glass glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
-            <svg class="w-7 h-7 lg:w-10 lg:h-10 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
+          <button class="btn-play absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] glass-2 glass-border-gradient-grey rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+            <img src="images/icons/play-icon.svg" alt="Play" class="w-6 lg:w-9 h-auto ml-1">
           </button>
         </div>
 
@@ -328,12 +351,10 @@
             <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-text-heading">Veja como comprar seu Natal Cap via PIX!</h2>
             <p class="text-lg text-text-body leading-[1.6]">É muito fácil, rápido e seguro. Em menos de 2 minutos você garante sua chance de mudar de vida!</p>
           </div>
-          <button class="video-thumb btn-primary bg-primary border border-primary rounded-full pl-6 pr-2 py-2 h-[60px] inline-flex items-center gap-3.5 w-fit text-white font-semibold text-lg" data-video-id="VIDEO_PIX_ID">
+          <button class="video-thumb btn-primary bg-primary border border-primary rounded-full pl-6 pr-2 py-2 h-[60px] inline-flex items-center gap-3.5 w-fit text-white font-semibold text-lg" data-video-id="Sgxbx65IDeM">
             Assista ao vídeo
             <span class="bg-white rounded-full p-4 flex items-center justify-center">
-              <svg class="w-[18px] h-[18px] text-primary" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
+              <img src="images/icons/play-icon-outlined.svg" alt="Play" class="w-[18px] h-auto">
             </span>
           </button>
         </div>
@@ -403,10 +424,10 @@
         <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white max-w-[284px] lg:max-w-none">Compre também pelo aplicativo do Natal Cap!</h2>
         <div class="flex gap-6">
           <a href="#" class="btn-store bg-white rounded-lg px-6 py-4 flex items-center gap-2">
-            <img src="images/shared/google-play-icon.png" alt="Google Play">
+            <img src="images/shared/google-play-icon.svg" alt="Google Play">
           </a>
           <a href="#" class="btn-store bg-white rounded-lg px-6 py-4 flex items-center gap-2">
-            <img src="images/shared/apple-icon.png" alt="Apple Store">
+            <img src="images/shared/apple-icon.svg" alt="Apple Store">
           </a>
         </div>
       </div>
@@ -513,17 +534,19 @@
 
   <!-- Fixed Bottom Navbar -->
   <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px]">
-    <!-- Botão central elevado -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-      <div class="glass-card glass-border-gradient-grey rounded-full p-1.5">
-        <a href="#" class="bg-primary w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+    <!-- Botão central elevado + label -->
+    <a href="#" id="btn-nav-central" class="nav-central-wrapper absolute top-[-32px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
+      <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px]">
+        <div class="bg-primary w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-lg">
           <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
             <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
           </svg>
-        </a>
+        </div>
       </div>
-    </div>
+
+      <span class="nav-central-label text-xs font-semibold text-black tracking-wide mt-1">Comprar título</span>
+    </a>
 
     <div class="backdrop-blur-[16px] bg-white/70 border border-black/5 rounded-full p-1.5 shadow-[0_-5px_24px_rgba(0,0,0,0.03)]">
       <div class="flex items-center justify-between px-6 h-14">
@@ -536,10 +559,8 @@
           <span class="text-xs font-semibold tracking-wide">Meus bilhetes</span>
         </a>
 
-        <!-- Comprar título (label) -->
-        <div class="flex flex-col items-center justify-end flex-1 pt-4">
-          <span class="text-xs font-semibold text-black tracking-wide">Comprar título</span>
-        </div>
+        <!-- Espaço central (onde fica o botão elevado) -->
+        <div class="flex-1"></div>
 
         <!-- Resultados -->
         <a href="resultados.html" class="flex flex-col items-center justify-center gap-1 flex-1 text-black hover:text-primary transition-colors">
@@ -612,6 +633,61 @@
           closeLightbox();
         }
       });
+    })();
+  </script>
+
+  <!-- Botão Central Bounce Animation -->
+  <script>
+    (function() {
+      const btn = document.querySelector('.nav-central-btn');
+      if (!btn) return;
+
+      function doBounce() {
+        btn.classList.add('bounce');
+        setTimeout(() => btn.classList.remove('bounce'), 700);
+      }
+
+      function triggerDoubleBounce() {
+        doBounce();
+        setTimeout(doBounce, 800);
+      }
+
+      // Dispara a cada 5 segundos
+      setInterval(triggerDoubleBounce, 5000);
+
+      // Dispara uma vez após 2 segundos do carregamento
+      setTimeout(triggerDoubleBounce, 2000);
+    })();
+  </script>
+
+  <!-- Parallax Effect -->
+  <script>
+    (function() {
+      const cards = document.querySelectorAll('.parallax-card');
+      if (!cards.length) return;
+
+      function updateParallax() {
+        cards.forEach(card => {
+          const rect = card.parentElement.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          // Calcula posição relativa do elemento na viewport (-1 a 1)
+          const elementCenter = rect.top + rect.height / 2;
+          const viewportCenter = windowHeight / 2;
+          const relativePosition = (elementCenter - viewportCenter) / windowHeight;
+
+          // Movimento vertical
+          const offset = relativePosition * 80;
+
+          // Scale sutil: 0.95 quando longe, 1.05 quando no centro
+          const scale = 1 + (1 - Math.abs(relativePosition)) * 0.08;
+
+          card.style.transform = `translateY(calc(-50% + ${offset}px)) scale(${scale})`;
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
     })();
   </script>
 </body>
