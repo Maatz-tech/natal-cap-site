@@ -533,7 +533,7 @@
   </footer>
 
   <!-- Fixed Bottom Navbar -->
-  <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px]">
+  <nav class="fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px]" style="bottom: max(16px, env(safe-area-inset-bottom, 16px))">
     <!-- Botão central elevado + label -->
     <a href="#" id="btn-nav-central" class="nav-central-wrapper absolute top-[-32px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
       <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px]">
@@ -660,9 +660,12 @@
     })();
   </script>
 
-  <!-- Parallax Effect -->
+  <!-- Parallax Effect (desktop only) -->
   <script>
     (function() {
+      // Desativa no mobile para evitar bugs de scroll
+      if (window.innerWidth < 1024) return;
+
       const cards = document.querySelectorAll('.parallax-card');
       if (!cards.length) return;
 
@@ -671,15 +674,11 @@
           const rect = card.parentElement.getBoundingClientRect();
           const windowHeight = window.innerHeight;
 
-          // Calcula posição relativa do elemento na viewport (-1 a 1)
           const elementCenter = rect.top + rect.height / 2;
           const viewportCenter = windowHeight / 2;
           const relativePosition = (elementCenter - viewportCenter) / windowHeight;
 
-          // Movimento vertical
           const offset = relativePosition * 80;
-
-          // Scale sutil: 0.95 quando longe, 1.05 quando no centro
           const scale = 1 + (1 - Math.abs(relativePosition)) * 0.08;
 
           card.style.transform = `translateY(calc(-50% + ${offset}px)) scale(${scale})`;
