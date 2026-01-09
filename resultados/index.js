@@ -151,7 +151,7 @@ function renderTabContent(resultado) {
         <div class="lg:flex-1">
           <div class="bg-white border border-border rounded-[21px] shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] p-[25px] flex flex-col gap-[32px]">
             <!-- Banner Image -->
-            <div class="w-full aspect-[749/315] rounded-[24px] overflow-hidden">
+            <div class="w-full aspect-[749/315] rounded-[8px] lg:rounded-[24px] overflow-hidden">
               <img src="${bannerImagem}" alt="Sorteio" class="w-full h-full object-cover">
             </div>
 
@@ -165,21 +165,45 @@ function renderTabContent(resultado) {
 
               <!-- Winner Cards -->
               ${premio.contemplados.map(contemplado => `
-                <div class="bg-white border border-border rounded-[14px] p-[22px] relative overflow-hidden">
+                <div class="bg-white border border-border rounded-[14px] p-[17px] lg:p-[22px] relative overflow-hidden">
                   <!-- Red left accent -->
                   <div class="absolute left-0 top-0 bottom-0 w-[5px] bg-primary"></div>
 
-                  <!-- Card Content -->
-                  <div class="flex items-center gap-[12px]">
+                  <!-- Mobile Layout -->
+                  <div class="flex flex-col gap-[6px] lg:hidden">
+                    <!-- Título Number - inline on mobile -->
+                    <div class="flex items-center gap-[8px]">
+                      <span class="text-muted text-[12px] font-bold uppercase">Título Nº</span>
+                      <span class="text-heading text-[16px] font-bold">${contemplado.numero}</span>
+                    </div>
+                    <!-- Winner Info -->
+                    <div class="flex flex-col gap-[7px]">
+                      <p class="text-[16px] font-bold text-heading leading-[1.5]">${contemplado.nome}</p>
+                      <div class="flex flex-wrap gap-x-[21px] gap-y-[4px] text-[12px] font-medium text-subtle">
+                        <span class="flex items-center gap-[4px]">
+                          <svg class="w-[14px] h-[14px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                          </svg>
+                          ${contemplado.cidade || 'Natal/RN'}
+                        </span>
+                        <span class="flex items-center gap-[4px]">
+                          <span class="w-[14px] h-[14px] bg-border-muted rounded-full flex items-center justify-center text-[10px] font-bold text-subtle">P</span>
+                          PDV: ${contemplado.pdv || 'Aplicativo'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Desktop Layout -->
+                  <div class="hidden lg:flex items-center gap-[12px]">
                     <!-- Título Number -->
                     <div class="flex flex-col items-center min-w-[100px]">
                       <span class="text-muted text-[12px] font-bold uppercase">Título Nº</span>
                       <span class="text-heading text-[16px] font-bold">${contemplado.numero}</span>
                     </div>
-
                     <!-- Divider -->
                     <div class="w-px h-[42px] bg-surface-muted"></div>
-
                     <!-- Winner Info -->
                     <div class="flex-1 flex flex-col gap-[7px]">
                       <p class="text-[16px] font-bold text-heading">${contemplado.nome}</p>
