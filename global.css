@@ -167,8 +167,8 @@ body {
 }
 
 /* Glass Border Gradient (grey) */
+/* Nota: elementos estáticos precisam de classe 'relative' do Tailwind */
 .glass-border-gradient-grey {
-  position: relative;
   border: none !important;
 }
 

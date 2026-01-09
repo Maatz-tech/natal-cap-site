@@ -23,17 +23,20 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://natalcap.com.br/contato/">
 
+  <!-- Fonts (non-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Styles -->
-  <!-- <link rel="stylesheet" href="../dist/output.css"> -->
+  <link rel="stylesheet" href="../dist/output.css">
   <link rel="stylesheet" href="../global.css">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="../script/main.js"></script>
+  <!-- Tailwind CDN (Dev Mode) -->
+  <!-- <script src="https://cdn.tailwindcss.com" defer></script> -->
+  <script src="../script/main.js" defer></script>
 </head>
 <body class="min-h-screen bg-white text-body overflow-x-hidden">
 
@@ -68,7 +71,7 @@
 
   <!-- Header Mobile -->
   <header class="fixed top-4 left-0 right-0 z-50 flex items-center justify-center lg:hidden px-4">
-    <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
+    <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center relative">
       <img src="../images/shared/logo-natalcap.webp" alt="Natal Cap" class="w-[60px] h-[61px] object-contain">
     </a>
     <button id="mobile-menu-toggle" class="glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center absolute right-4">

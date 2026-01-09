@@ -1,34 +1,34 @@
 {
   "hero": {
     "mobile": {
-      "src": "images/home/home-hero-image-mobile.png",
+      "src": "images/home/home-hero-image-mobile.webp",
       "alt": "Natal Cap - Sua sorte ajuda quem precisa"
     },
     "desktop": {
-      "src": "images/home/home-hero-image-desktop.png",
+      "src": "images/home/home-hero-image-desktop.webp",
       "alt": "Natal Cap - Sua sorte ajuda quem precisa"
     }
   },
   "videos": {
     "sorteio": {
-      "thumbnail": "images/home/thumb-sorteio.png",
+      "thumbnail": "images/home/thumb-sorteio.webp",
       "videoId": "Sgxbx65IDeM",
       "alt": "Sorteio ao vivo"
     },
     "premiacao": {
-      "thumbnail": "images/home/thumb-premiacao.png",
+      "thumbnail": "images/home/thumb-premiacao.webp",
       "videoId": "Sgxbx65IDeM",
       "alt": "Premiação",
       "caption": "Premiacao - Sorteio do dia 11/01"
     },
     "ganhadores": {
-      "thumbnail": "images/home/thumb-ganhadores.png",
+      "thumbnail": "images/home/thumb-ganhadores.webp",
       "videoId": "Sgxbx65IDeM",
       "alt": "Ganhadores",
       "caption": "Ganhadores do Sorteio | Dia 14/12"
     },
     "pix": {
-      "thumbnail": "images/home/thumb-pix.png",
+      "thumbnail": "images/home/thumb-pix.webp",
       "videoId": "Sgxbx65IDeM",
       "alt": "Como comprar via PIX"
     }

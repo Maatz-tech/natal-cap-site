@@ -24,6 +24,7 @@
   <link rel="canonical" href="https://natalcap.com.br/resultados/">
 
   <!-- Preload critical resources -->
+  <link rel="preload" as="fetch" href="../data/resultados.json" crossorigin>
   <link rel="preload" href="../images/home/home-hero-bg-desktop.webp" as="image" fetchpriority="high">
   <link rel="preload" href="../images/shared/logo-natalcap.webp" as="image">
 
@@ -35,12 +36,13 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Styles -->
+  <link rel="stylesheet" href="../dist/output.css">
   <link rel="stylesheet" href="../global.css">
   <link rel="stylesheet" href="index.css">
 
-  <!-- Tailwind (CDN with custom config) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="../script/main.js"></script>
+  <!-- Tailwind CDN (Dev Mode) -->
+  <!-- <script src="https://cdn.tailwindcss.com" defer></script> -->
+  <script src="../script/main.js" defer></script>
 </head>
 <body class="min-h-screen bg-surface-gray text-body overflow-x-hidden">
 
@@ -103,7 +105,7 @@
 
       <!-- Header Mobile -->
       <header class="z-10 mb-[-6px] flex items-center justify-center lg:hidden w-full relative">
-        <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
+        <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center relative">
           <img src="../images/shared/logo-natalcap.webp" alt="Natal Cap" class="w-[60px] h-[61px] object-contain" width="60" height="61">
         </a>
         <button id="mobile-menu-toggle" class="glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center absolute right-2">
@@ -291,7 +293,7 @@
   <!-- Fixed Bottom Navbar -->
   <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px] pb-[env(safe-area-inset-bottom)]">
     <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="btn-nav-central" class="nav-central-wrapper absolute top-[-32px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
-      <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px]">
+      <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px] relative">
         <div class="bg-primary w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-lg">
           <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
