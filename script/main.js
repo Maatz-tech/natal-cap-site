@@ -1,5 +1,6 @@
-// Tailwind CSS Configuration
+// Tailwind CSS Configuration (only for CDN dev mode)
 // Cores baseadas nas variáveis do Figma Design System
+if (typeof tailwind !== 'undefined') {
 tailwind.config = {
   theme: {
     extend: {
@@ -40,3 +41,4 @@ tailwind.config = {
     }
   }
 };
+}

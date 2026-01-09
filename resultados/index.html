@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="../images/shared/logo-natalcap.png">
+  <link rel="icon" type="image/png" href="../images/shared/logo-natalcap.webp">
   <meta name="description" content="Confira os resultados dos sorteios do Natal Cap e veja os ganhadores.">
   <title>Resultados - Natal Cap</title>
 
@@ -12,26 +12,33 @@
   <meta property="og:url" content="https://natalcap.com.br/resultados/">
   <meta property="og:title" content="Resultados - Natal Cap">
   <meta property="og:description" content="Confira os resultados dos sorteios do Natal Cap e veja os ganhadores.">
-  <meta property="og:image" content="https://natalcap.com.br/images/shared/logo-natalcap.png">
+  <meta property="og:image" content="https://natalcap.com.br/images/shared/logo-natalcap.webp">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Resultados - Natal Cap">
   <meta name="twitter:description" content="Confira os resultados dos sorteios do Natal Cap e veja os ganhadores.">
-  <meta name="twitter:image" content="https://natalcap.com.br/images/shared/logo-natalcap.png">
+  <meta name="twitter:image" content="https://natalcap.com.br/images/shared/logo-natalcap.webp">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://natalcap.com.br/resultados/">
 
+  <!-- Preload critical resources -->
+  <link rel="preload" href="../images/home/home-hero-bg-desktop.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="../images/shared/logo-natalcap.webp" as="image">
+
+  <!-- Preconnect & Preload fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../global.css">
   <link rel="stylesheet" href="index.css">
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind (CDN with custom config) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../script/main.js"></script>
 </head>
@@ -50,7 +57,7 @@
 
     <div class="mobile-menu-content relative flex flex-col items-center pt-[80px] pb-[140px] px-6 h-full">
       <a href="../" class="mb-8">
-        <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[90px] h-auto">
+        <img src="../images/shared/logo-natalcap.webp" alt="Natal Cap" class="w-[90px] h-auto" width="90" height="92">
       </a>
 
       <nav class="flex flex-col items-center w-full max-w-[280px] gap-0">
@@ -68,7 +75,7 @@
     <section class="relative flex flex-col items-center pb-[80px] lg:pb-[120px] pt-[6px] lg:pt-2 px-[24px] lg:px-0">
       <!-- Background -->
       <div class="absolute inset-0 pointer-events-none">
-        <img src="../images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+        <img src="../images/home/home-hero-bg-desktop.webp" alt="" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
         <div class="absolute inset-0" style="background: linear-gradient(104deg, rgba(224, 46, 8, 0.49) 20%, rgba(195, 18, 0, 1) 59%);"></div>
       </div>
 
@@ -83,7 +90,7 @@
             </ul>
             <span class="w-[118px] relative flex-shrink-0">
               <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer">
-                <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="logo-desktop w-[118px] top-[-30px] fixed">
+                <img src="../images/shared/logo-natalcap.webp" alt="Natal Cap" class="logo-desktop w-[118px] top-[-30px] fixed" width="118" height="120">
               </a>
             </span>
             <ul class="flex-1 flex items-center justify-end gap-2">
@@ -97,10 +104,10 @@
       <!-- Header Mobile -->
       <header class="z-10 mb-[-6px] flex items-center justify-center lg:hidden w-full relative">
         <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
-          <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[60px] h-[61px] object-contain">
+          <img src="../images/shared/logo-natalcap.webp" alt="Natal Cap" class="w-[60px] h-[61px] object-contain" width="60" height="61">
         </a>
         <button id="mobile-menu-toggle" class="glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center absolute right-2">
-          <img src="../images/icons/align-justify.svg" alt="Menu" class="w-[22px] h-[22px]">
+          <img src="../images/icons/align-justify.svg" alt="Menu" class="w-[22px] h-[22px]" width="22" height="22">
         </button>
       </header>
 
@@ -125,13 +132,13 @@
         <div class="bg-white border border-border rounded-[24px] shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] p-[17px] lg:p-[22px] mb-[16px] flex flex-col lg:flex-row items-center lg:justify-between gap-[16px]">
           <!-- Date Select -->
           <div class="flex flex-col gap-[3.5px] w-full lg:w-auto">
-            <label class="text-[16px] font-semibold text-muted leading-[1.6]">Data do sorteio</label>
+            <label for="date-select" class="text-[16px] font-semibold text-muted leading-[1.6]">Data do sorteio</label>
             <div class="relative">
-              <select id="date-select" class="appearance-none w-full lg:min-w-[240px] bg-surface-light lg:bg-surface-gray border border-border lg:border-border-muted rounded-[10.5px] pl-[45px] pr-[40px] py-[11.5px] text-[16px] font-bold text-heading leading-[21px] cursor-pointer focus:outline-none">
+              <select id="date-select" aria-label="Selecione a data do sorteio" class="appearance-none w-full lg:min-w-[240px] bg-surface-light lg:bg-surface-gray border border-border lg:border-border-muted rounded-[10.5px] pl-[45px] pr-[40px] py-[11.5px] text-[16px] font-bold text-heading leading-[21px] cursor-pointer focus:outline-none">
                 <!-- Options populated by JS -->
               </select>
               <!-- Calendar Icon -->
-              <img src="../images/icons/calendar.svg" alt="" class="absolute left-[18.5px] top-1/2 -translate-y-1/2 w-[20px] h-[20px] pointer-events-none">
+              <img src="../images/icons/calendar.svg" alt="" class="absolute left-[18.5px] top-1/2 -translate-y-1/2 w-[20px] h-[20px] pointer-events-none" width="20" height="20">
               <!-- Chevron Icon -->
               <svg class="absolute right-[18.5px] top-1/2 -translate-y-1/2 w-[16px] h-[16px] text-muted pointer-events-none" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 6L8 10L12 6"/>
@@ -142,7 +149,7 @@
           <a id="pdf-download" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center gap-[14px] h-[60px] pl-[24px] pr-[8px] py-[8px] bg-primary border border-primary rounded-full">
             <span class="text-[18px] font-semibold text-white leading-[1.2]">Baixar versão PDF</span>
             <div class="bg-white rounded-full p-[16px] flex items-center justify-center">
-              <img src="../images/icons/download.svg" alt="" class="w-[18px] h-[18px]">
+              <img src="../images/icons/download.svg" alt="" class="w-[18px] h-[18px]" width="18" height="18">
             </div>
           </a>
         </div>
@@ -163,28 +170,28 @@
     <!-- CTA App Section -->
     <section class="relative py-[72px] lg:py-[96px] px-[24px] lg:px-0 overflow-hidden">
       <div class="absolute inset-0 pointer-events-none">
-        <img src="../images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+        <img src="../images/home/home-hero-bg-desktop.webp" alt="" class="w-full h-full object-cover" width="1920" height="1080" loading="lazy">
         <div class="absolute inset-0 bg-[rgba(219,21,38,0.6)]"></div>
       </div>
       <div class="relative max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-[32px]">
         <div class="fade-in w-full lg:hidden aspect-[1841/805] rounded-[16px] overflow-hidden">
-          <img src="../images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+          <img src="../images/home/banner-app.webp" alt="Aplicativo Natal Cap" class="w-full h-full object-cover" width="1841" height="805" loading="lazy">
         </div>
 
         <div class="fade-in-left flex-1 flex flex-col gap-[24px] lg:gap-[40px]">
           <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white w-[284px] lg:w-auto">Compre também pelo aplicativo do Natal Cap!</h2>
           <div class="flex gap-[24px]">
             <a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[61px] flex items-center gap-[8px]">
-              <img src="../images/shared/google-play-icon.svg" alt="Google Play">
+              <img src="../images/shared/google-play-icon.svg" alt="Google Play" width="103" height="29">
             </a>
             <a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[60px] flex items-center gap-[8px]">
-              <img src="../images/shared/apple-icon.svg" alt="Apple Store">
+              <img src="../images/shared/apple-icon.svg" alt="Apple Store" width="91" height="28">
             </a>
           </div>
         </div>
 
         <div class="fade-in-right hidden lg:block w-[696px] h-[304px] rounded-[24px] overflow-hidden">
-          <img src="../images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+          <img src="../images/home/banner-app.webp" alt="Aplicativo Natal Cap" class="w-full h-full object-cover" width="696" height="304" loading="lazy">
         </div>
       </div>
     </section>
@@ -198,22 +205,22 @@
       <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
         <div class="flex flex-wrap items-center gap-8 mx-auto lg:mx-0 text-center">
           <div class="w-[180px] mt-[-96px] mx-auto lg:mx-0 bg-gray-700">
-            <img src="../images/footer-titulo.png" alt="Natal Cap Título" class="w-full h-full object-cover object-top">
+            <img src="../images/footer-titulo.webp" alt="Natal Cap Título" class="w-full h-full object-cover object-top" width="180" height="200" loading="lazy">
           </div>
 
           <div class="flex flex-col w-full lg:w-auto lg:flex-row gap-8 items-start justify-center">
             <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
               <span class="text-[10px] font-bold text-body uppercase tracking-wider">Realização</span>
-              <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="h-[67px] w-auto">
+              <img src="../images/shared/logo-natalcap.webp" alt="Natal Cap" class="h-[67px] w-auto" width="66" height="67">
             </div>
             <a href="https://hospitalvarelasantiago.org.br/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
               <span class="text-[10px] font-bold text-body uppercase tracking-wider">Entidade Beneficiada</span>
-              <img src="../images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Varela Santiago" class="h-[64px] w-auto">
+              <img src="../images/shared/logo-hospital-infantil-varela-santiago.webp" alt="Hospital Varela Santiago" class="h-[64px] w-auto" width="142" height="64">
             </a>
             <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
               <span class="text-[10px] font-bold text-body uppercase tracking-wider">Título emitido pela</span>
               <div class="bg-white rounded-lg p-1">
-                <img src="../images/logo-kovr.png" alt="KOVR" class="h-[55px] w-auto">
+                <img src="../images/logo-kovr.webp" alt="KOVR" class="h-[55px] w-auto" width="102" height="55">
               </div>
             </div>
           </div>
@@ -275,7 +282,7 @@
         <span class="text-xs text-body">© <script>document.write(new Date().getFullYear())</script> Natal Cap. Todos os direitos reservados.</span>
         <a href="https://maatz.com.br/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
           <span class="text-xs text-body">Desenvolvido por</span>
-          <img src="../images/shared/maatz-logo.png" alt="Maatz" class="h-6 w-auto">
+          <img src="../images/shared/maatz-logo.webp" alt="Maatz" class="h-6 w-auto" width="62" height="24">
         </a>
       </div>
     </div>
@@ -320,9 +327,9 @@
     </div>
   </nav>
 
-  <!-- Scripts -->
-  <script src="../script/animate.js"></script>
-  <script src="../script/global.js"></script>
-  <script src="index.js"></script>
+  <!-- Scripts (deferred for performance) -->
+  <script src="../script/animate.js" defer></script>
+  <script src="../script/global.js" defer></script>
+  <script src="index.js" defer></script>
 </body>
 </html>
