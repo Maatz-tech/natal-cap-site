@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../images/shared/logo-natalcap.png">
+  <meta name="description" content="Confira os resultados dos sorteios do Natal Cap e veja os ganhadores.">
+  <title>Resultados - Natal Cap</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../script/main.js"></script>
+
+  <style>
+    /* CSS Variables - Design System */
+    :root {
+      --color-primary: #db1526;
+      --color-primary-dark: #8a0900;
+      --color-secondary: #fcc200;
+      --color-heading: #19191a;
+      --color-body: #7b7d84;
+      --color-subtle: #797979;
+      --color-surface-light: #f9fafb;
+      --color-surface-muted: #f3f4f6;
+      --color-border: #e5e5e6;
+      --color-border-muted: #e5e7eb;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Figtree', sans-serif; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-in-right { opacity: 0; transform: translateX(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .btn-primary { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(219, 21, 38, 0.3); }
+    .btn-store { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-store:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); }
+    .glass { backdrop-filter: blur(21.9px); -webkit-backdrop-filter: blur(21.9px); background: rgba(255, 255, 255, 0.17); border: 1px solid rgba(255, 255, 255, 0); }
+    .glass-border-gradient { position: relative; }
+    .glass-border-gradient::before { content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .glass-border-gradient-grey { position: relative; border: none !important; }
+    .glass-border-gradient-grey::before { content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: linear-gradient(180deg, rgba(221,221,221,0) 0%, rgba(221,221,221,0.3) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .gradient-line { background: linear-gradient(90deg, var(--color-primary), #fde047 50%, var(--color-primary)); }
+    .glass-card { backdrop-filter: blur(14.5px); -webkit-backdrop-filter: blur(14.5px); background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(166, 163, 163, 0); }
+
+    /* Tabs */
+    .tab-btn {
+      position: relative;
+      padding: 7px 21px;
+      border-radius: 9999px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
+      color: var(--color-subtle);
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background-color: var(--color-primary);
+      color: white;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 21px;
+      right: 21px;
+      height: 2px;
+      background-color: var(--color-secondary);
+      border-radius: 9999px;
+    }
+    .tab-btn:not(.active):hover {
+      color: var(--color-primary);
+    }
+
+    /* Tab Content Animation - Out-In */
+    #tabs-content {
+      position: relative;
+    }
+    .tab-content {
+      display: none;
+      opacity: 0;
+    }
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+    }
+    .tab-content.fade-out {
+      display: block;
+      animation: fadeOut 0.2s ease forwards;
+    }
+    .tab-content.fade-in {
+      display: block;
+      animation: fadeIn 0.25s ease forwards;
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dezenas Grid */
+    .dezena-item {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, var(--color-surface-light), var(--color-border-muted));
+      border: 1px solid var(--color-border);
+      border-radius: 9999px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-heading);
+      box-shadow: 0px 1.5px 1.5px 0px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .dezena-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      box-shadow: inset 0px 1.5px 3px 0px white;
+      pointer-events: none;
+    }
+
+    /* Bottom Nav */
+    .nav-central-wrapper { transition: transform 0.2s ease; }
+    .nav-central-btn { transition: box-shadow 0.2s ease; }
+    .nav-central-label { transition: color 0.2s ease; }
+    .nav-central-wrapper:hover { transform: translateX(-50%) scale(1.05); }
+    .nav-central-wrapper:hover .nav-central-btn { box-shadow: 0 8px 24px rgba(219, 21, 38, 0.4); }
+    .nav-central-wrapper:hover .nav-central-label { color: var(--color-primary); }
+
+    @keyframes bounce-attention {
+      0%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-8px); }
+      50% { transform: translateY(0); }
+      70% { transform: translateY(-5px); }
+      85% { transform: translateY(0); }
+    }
+    .nav-central-btn.bounce { animation: bounce-attention 0.7s ease-in-out; }
+
+    @keyframes pulse-attention {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    .logo-mobile.pulse, .logo-desktop.pulse { animation: pulse-attention 0.8s ease-in-out; }
+
+    /* Mobile Menu */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu-overlay.active .mobile-menu-content {
+      transform: translateY(0);
+    }
+    .mobile-menu-content {
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+    body.menu-open {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-surface-gray text-body overflow-x-hidden">
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-xl" onclick="closeMobileMenu()"></div>
+
+    <button onclick="closeMobileMenu()" class="absolute top-[12px] right-2 z-20 glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center">
+      <svg class="w-[22px] h-[22px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="mobile-menu-content relative flex flex-col items-center pt-[80px] pb-[140px] px-6 h-full">
+      <a href="../" class="mb-8">
+        <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[90px] h-auto">
+      </a>
+
+      <nav class="flex flex-col items-center w-full max-w-[280px] gap-0">
+        <a href="../" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Inicio</a>
+        <a href="../resultados/" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Resultados</a>
+        <a href="../instituicao-beneficiada/" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Inst. Beneficiada</a>
+        <a href="../regulamento/" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Regulamento</a>
+        <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" class="w-full py-4 text-center text-white font-bold text-[15px] uppercase tracking-wider border-b border-white/20 hover:text-secondary transition-colors">Comprar</a>
+              </nav>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative flex flex-col items-center pb-[80px] lg:pb-[120px] pt-[6px] lg:pt-2 px-[24px] lg:px-0">
+      <!-- Background -->
+      <div class="absolute inset-0 pointer-events-none">
+        <img src="../images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0" style="background: linear-gradient(104deg, rgba(224, 46, 8, 0.49) 20%, rgba(195, 18, 0, 1) 59%);"></div>
+      </div>
+
+      <!-- Header Desktop -->
+      <header class="z-10 mt-6 mb-6 w-[1000px] max-w-full hidden lg:block">
+        <nav class="mx-auto flex items-center justify-center w-full">
+          <div class="glass glass-border-gradient rounded-full px-8 py-5 flex items-center justify-between gap-6 w-full max-w-full">
+            <ul class="flex-1 flex items-center justify-start gap-2">
+              <li><a href="../" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Início</a></li>
+              <li><a href="../resultados/" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Resultados</a></li>
+              <li><a href="../instituicao-beneficiada/" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Inst. Beneficiada</a></li>
+            </ul>
+            <span class="w-[118px] relative flex-shrink-0">
+              <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer">
+                <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="logo-desktop w-[118px] top-[-30px] fixed">
+              </a>
+            </span>
+            <ul class="flex-1 flex items-center justify-end gap-2">
+              <li><a href="../regulamento/" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Regulamento</a></li>
+              <li><a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" class="text-white text-sm font-semibold font-poppins px-3 py-1 hover:text-secondary transition-colors">Comprar</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Header Mobile -->
+      <header class="z-10 mb-[-6px] flex items-center justify-center lg:hidden w-full relative">
+        <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="logo-mobile" class="logo-mobile glass glass-border-gradient-grey rounded-full p-1.5 flex items-center justify-center">
+          <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="w-[60px] h-[61px] object-contain">
+        </a>
+        <button id="mobile-menu-toggle" class="glass glass-border-gradient-grey rounded-full p-[5px] flex items-center justify-center absolute right-2">
+          <img src="../images/icons/align-justify.svg" alt="Menu" class="w-[22px] h-[22px]">
+        </button>
+      </header>
+
+      <!-- Hero Content -->
+      <div class="relative flex flex-col gap-[12px] items-center max-w-[649px] text-center mt-[40px] lg:mt-[36px]">
+        <!-- Badge -->
+        <div class="backdrop-blur-[6px] bg-white/10 border border-white/20 rounded-full px-[11.5px] py-[4.5px]">
+          <span class="text-white/90 font-bold text-[16px]">Resultados</span>
+        </div>
+        <!-- Title -->
+        <h1 class="fade-in text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white">Confira os contemplados<br>do Natal Cap</h1>
+        <!-- Subtitle -->
+        <p class="fade-in delay-100 text-[16px] lg:text-[18px] font-medium leading-[1.6] text-white">Veja os ganhadores dos sorteios e a lista completa de contemplados.</p>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="relative px-[14px] lg:px-0 pb-[64px] lg:pb-[94px] mt-[-40px] lg:mt-[-70px]">
+      <div class="max-w-[1216px] mx-auto">
+
+        <!-- Controls: Date Select + PDF Download -->
+        <div class="bg-white border border-border rounded-[24px] shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] p-[17px] lg:p-[22px] mb-[16px] flex flex-col lg:flex-row items-center lg:justify-between gap-[16px]">
+          <!-- Date Select -->
+          <div class="flex flex-col gap-[3.5px] w-full lg:w-auto">
+            <label class="text-[16px] font-semibold text-muted leading-[1.6]">Data do sorteio</label>
+            <div class="relative">
+              <select id="date-select" class="appearance-none w-full lg:min-w-[240px] bg-surface-light lg:bg-surface-gray border border-border lg:border-border-muted rounded-[10.5px] pl-[45px] pr-[40px] py-[11.5px] text-[16px] font-bold text-heading leading-[21px] cursor-pointer focus:outline-none">
+                <!-- Options populated by JS -->
+              </select>
+              <!-- Calendar Icon -->
+              <img src="../images/icons/calendar.svg" alt="" class="absolute left-[18.5px] top-1/2 -translate-y-1/2 w-[20px] h-[20px] pointer-events-none">
+              <!-- Chevron Icon -->
+              <svg class="absolute right-[18.5px] top-1/2 -translate-y-1/2 w-[16px] h-[16px] text-muted pointer-events-none" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6L8 10L12 6"/>
+              </svg>
+            </div>
+          </div>
+          <!-- PDF Download Button -->
+          <a id="pdf-download" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center gap-[14px] h-[60px] pl-[24px] pr-[8px] py-[8px] bg-primary border border-primary rounded-full">
+            <span class="text-[18px] font-semibold text-white leading-[1.2]">Baixar versão PDF</span>
+            <div class="bg-white rounded-full p-[16px] flex items-center justify-center">
+              <img src="../images/icons/download.svg" alt="" class="w-[18px] h-[18px]">
+            </div>
+          </a>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div id="tabs-nav" class="flex flex-wrap justify-center lg:justify-start gap-[8px] lg:gap-[7px] border-b border-border pb-[15px] mb-[16px]">
+          <!-- Tabs populated by JS -->
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="tabs-content" class="relative">
+          <!-- Content populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA App Section -->
+    <section class="relative py-[72px] lg:py-[96px] px-[24px] lg:px-0 overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none">
+        <img src="../images/home/home-hero-bg-desktop.png" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-[rgba(219,21,38,0.6)]"></div>
+      </div>
+      <div class="relative max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-[32px]">
+        <div class="fade-in w-full lg:hidden aspect-[1841/805] rounded-[16px] overflow-hidden">
+          <img src="../images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+        </div>
+
+        <div class="fade-in-left flex-1 flex flex-col gap-[24px] lg:gap-[40px]">
+          <h2 class="text-[32px] lg:text-[40px] font-bold leading-[1.2] text-white w-[284px] lg:w-auto">Compre tambem pelo aplicativo do Natal Cap!</h2>
+          <div class="flex gap-[24px]">
+            <a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[61px] flex items-center gap-[8px]">
+              <img src="../images/shared/google-play-icon.svg" alt="Google Play">
+            </a>
+            <a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="btn-store bg-white rounded-[8px] px-[24px] py-[16px] h-[60px] flex items-center gap-[8px]">
+              <img src="../images/shared/apple-icon.svg" alt="Apple Store">
+            </a>
+          </div>
+        </div>
+
+        <div class="fade-in-right hidden lg:block w-[696px] h-[304px] rounded-[24px] overflow-hidden">
+          <img src="../images/home/banner-app.png" alt="Aplicativo Natal Cap" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div class="h-1 gradient-line w-full"></div>
+
+  <footer class="bg-surface-light pt-16 px-4 md:px-8 lg:px-[112px] relative z-2">
+    <div class="max-w-[1216px] mx-auto">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
+        <div class="flex flex-wrap items-center gap-8 mx-auto lg:mx-0 text-center">
+          <div class="w-[180px] mt-[-96px] mx-auto lg:mx-0 bg-gray-700">
+            <img src="../images/footer-titulo.png" alt="Natal Cap Titulo" class="w-full h-full object-cover object-top">
+          </div>
+
+          <div class="flex flex-col w-full lg:w-auto lg:flex-row gap-8 items-start justify-center">
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-body uppercase tracking-wider">Realizacao</span>
+              <img src="../images/shared/logo-natalcap.png" alt="Natal Cap" class="h-[67px] w-auto">
+            </div>
+            <a href="https://hospitalvarelasantiago.org.br/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-body uppercase tracking-wider">Entidade Beneficiada</span>
+              <img src="../images/shared/logo-hospital-infantil-varela-santiago.png" alt="Hospital Varela Santiago" class="h-[64px] w-auto">
+            </a>
+            <div class="flex flex-col items-center gap-2 mx-auto lg:mx-0">
+              <span class="text-[10px] font-bold text-body uppercase tracking-wider">Titulo emitido pela</span>
+              <div class="bg-white rounded-lg p-1">
+                <img src="../images/logo-kovr.png" alt="KOVR" class="h-[55px] w-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-8 lg:mt-0 mx-auto lg:mx-0">
+          <a href="http://instagram.com/natalcapoficial" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M11 5.5C8.24 5.5 6 7.74 6 10.5C6 13.26 8.24 15.5 11 15.5C13.76 15.5 16 13.26 16 10.5C16 7.74 13.76 5.5 11 5.5ZM11 13.5C9.34 13.5 8 12.16 8 10.5C8 8.84 9.34 7.5 11 7.5C12.66 7.5 14 8.84 14 10.5C14 12.16 12.66 13.5 11 13.5Z" fill="white"/><path d="M16.5 5.5C17.0523 5.5 17.5 5.05228 17.5 4.5C17.5 3.94772 17.0523 3.5 16.5 3.5C15.9477 3.5 15.5 3.94772 15.5 4.5C15.5 5.05228 15.9477 5.5 16.5 5.5Z" fill="white"/><path d="M19.5 1.5C18.5 0.5 17 0 15 0H7C5 0 3.5 0.5 2.5 1.5C1.5 2.5 1 4 1 6V15C1 17 1.5 18.5 2.5 19.5C3.5 20.5 5 21 7 21H15C17 21 18.5 20.5 19.5 19.5C20.5 18.5 21 17 21 15V6C21 4 20.5 2.5 19.5 1.5ZM19 15C19 16.5 18.5 17.5 18 18C17.5 18.5 16.5 19 15 19H7C5.5 19 4.5 18.5 4 18C3.5 17.5 3 16.5 3 15V6C3 4.5 3.5 3.5 4 3C4.5 2.5 5.5 2 7 2H15C16.5 2 17.5 2.5 18 3C18.5 3.5 19 4.5 19 6V15Z" fill="white"/></svg>
+          </a>
+          <a href="http://facebook.com/natalcapoficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M12 21V11H15L15.5 7.5H12V5.5C12 4.5 12.5 3.5 14 3.5H15.5V0.5C15.5 0.5 14.2 0 13 0C10.5 0 9 1.5 9 4.5V7.5H5.5V11H9V21H12Z" fill="white"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCHuWfcuYnenimJ_qHoMB3Gw" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none"><path d="M21 6C20.9 4.5 20.5 3.5 19.5 2.8C18.5 2 17 2 11 2C5 2 3.5 2 2.5 2.8C1.5 3.5 1.1 4.5 1 6C0.9 7.5 0.9 9 0.9 10.5C0.9 12 0.9 13.5 1 15C1.1 16.5 1.5 17.5 2.5 18.2C3.5 19 5 19 11 19C17 19 18.5 19 19.5 18.2C20.5 17.5 20.9 16.5 21 15C21.1 13.5 21.1 12 21.1 10.5C21.1 9 21.1 7.5 21 6ZM9 14V7L14.5 10.5L9 14Z" fill="white"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-b border-border py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Navegacao</h4>
+          <ul class="flex flex-col gap-2">
+            <li><a href="../resultados/" class="text-sm text-body hover:text-primary transition-colors">Resultados</a></li>
+            <li><a href="../ganhadores/" class="text-sm text-body hover:text-primary transition-colors">Ganhadores</a></li>
+            <li><a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" class="text-sm text-body hover:text-primary transition-colors">Comprar Titulo</a></li>
+            <li><a href="https://v627.adj.st/comprar?adj_t=1hd85i33" target="_blank" rel="noopener noreferrer" class="text-sm text-body hover:text-primary transition-colors">Baixar App</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Legal</h4>
+          <ul class="flex flex-col gap-2">
+            <li><a href="../regulamento/" class="text-sm text-body hover:text-primary transition-colors">Regulamento e Condicoes Gerais</a></li>
+            <li><a href="../termos/" class="text-sm text-body hover:text-primary transition-colors">Politica de Privacidade e Termos de Uso</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Fale Conosco</h4>
+          <div class="flex flex-col gap-2">
+            <span class="text-sm text-body">Segunda a Sexta: 8h as 18h</span>
+            <a href="tel:+558432026000" class="text-xl font-bold text-heading hover:text-primary transition-colors">(84) 3202-6000</a>
+            <a href="mailto:atendimento@natalcap.com.br" class="text-sm text-body hover:text-primary transition-colors">atendimento@natalcap.com.br</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-primary mb-4">Endereco</h4>
+          <div class="flex flex-col gap-3">
+            <span class="text-sm text-body">Av. Nilo Pecanha, 239 - Petropolis - Natal/RN</span>
+            <a href="https://share.google/d2lQ2IVhYe6EGWpX3" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-heading inline-flex items-center gap-2 hover:text-primary transition-colors">
+              Ver no mapa
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H3.5M8.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="py-6 flex flex-col gap-3">
+        <p class="text-sm font-bold text-primary">E proibida a venda de titulos de capitalizacao a menores de dezesseis anos.</p>
+        <p class="text-xs font-bold text-heading">VOCE PODE AJUDAR O HOSPITAL INFANTIL VARELA SANTIAGO COMPRANDO O NATAL CAP E CEDENDO O DIREITO DE RESGATE</p>
+        <p class="text-xs text-body leading-[1.6]">Sorteios decorrentes de Titulos de Capitalizacao de Pagamento Unico, da Modalidade Filantropia Premiavel, emitidos pela KOVR Capitalizacao. Voce pode ajudar o HOSPITAL INFANTIL VARELA SANTIAGO comprando o Natal Cap e cedendo o direito de resgate. A aprovacao deste Titulo pela SUSEP nao implica, por parte da Autarquia, em incentivo ou recomendacao a sua aquisicao, representando exclusivamente, sua adequacao as normas em vigor. Antes de contratar, consulte previamente as Condicoes Gerais.</p>
+      </div>
+      <div class="border-t border-border py-8 pb-32 flex flex-col md:flex-row items-center justify-between gap-4">
+        <span class="text-xs text-body">© <script>document.write(new Date().getFullYear())</script> Natal Cap. Todos os direitos reservados.</span>
+        <a href="https://maatz.com.br/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+          <span class="text-xs text-body">Desenvolvido por</span>
+          <img src="../images/shared/maatz-logo.png" alt="Maatz" class="h-6 w-auto">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fixed Bottom Navbar -->
+  <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[400px] pb-[env(safe-area-inset-bottom)]">
+    <a href="https://compra.natalcap.com.br/" target="_blank" rel="noopener noreferrer" id="btn-nav-central" class="nav-central-wrapper absolute top-[-32px] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
+      <div class="nav-central-btn glass-card glass-border-gradient-grey rounded-full p-1.5 mb-[2px]">
+        <div class="bg-primary w-[52px] h-[52px] rounded-full flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+        </div>
+      </div>
+      <span class="nav-central-label text-xs font-semibold text-black tracking-wide mt-1">Comprar</span>
+    </a>
+
+    <div class="backdrop-blur-[16px] bg-white/70 border border-black/5 rounded-full p-1.5 shadow-[0_-5px_24px_rgba(0,0,0,0.03)]">
+      <div class="flex items-center justify-between px-6 h-14">
+        <a href="https://consulta.natalcap.com.br/meus-cupons/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center gap-1 flex-1 text-black hover:text-primary transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          <span class="text-xs font-semibold tracking-wide text-center">Meus bilhetes</span>
+        </a>
+
+        <div class="flex-1"></div>
+
+        <a href="../resultados/" class="flex flex-col items-center justify-center gap-1 flex-1 text-primary">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v4"/><path d="M16 2v4"/>
+            <rect width="18" height="18" x="3" y="4" rx="2"/>
+            <path d="M3 10h18"/>
+            <path d="m9 16 2 2 4-4"/>
+          </svg>
+          <span class="text-xs font-semibold tracking-wide text-center">Resultados</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Animation Script -->
+  <script src="../script/animate.js"></script>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      document.body.classList.add('menu-open');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+  </script>
+
+  <!-- Results Script -->
+  <script>
+    let resultadosData = null;
+    let currentDateIndex = 0;
+    let currentTabIndex = 0;
+    let isTransitioning = false;
+
+    async function loadResultados() {
+      try {
+        const response = await fetch('../data/resultados.json');
+        const data = await response.json();
+        resultadosData = data.resultados;
+
+        populateDateSelect();
+        renderResults();
+      } catch (error) {
+        console.error('Erro ao carregar resultados:', error);
+      }
+    }
+
+    function populateDateSelect() {
+      const select = document.getElementById('date-select');
+      select.innerHTML = resultadosData.map((resultado, index) =>
+        `<option value="${index}">${resultado.dataFormatada}</option>`
+      ).join('');
+
+      select.addEventListener('change', (e) => {
+        currentDateIndex = parseInt(e.target.value);
+        currentTabIndex = 0;
+        renderResults();
+      });
+    }
+
+    function renderResults() {
+      const resultado = resultadosData[currentDateIndex];
+
+      // Reset transition state
+      isTransitioning = false;
+
+      // Update PDF link
+      document.getElementById('pdf-download').href = resultado.pdfUrl;
+
+      // Render tabs
+      renderTabs(resultado.premios);
+
+      // Render content (pass full resultado for bannerImagem, edicao, etc)
+      renderTabContent(resultado);
+    }
+
+    function renderTabs(premios) {
+      const tabsNav = document.getElementById('tabs-nav');
+      tabsNav.innerHTML = premios.map((premio, index) => `
+        <button
+          class="tab-btn ${index === currentTabIndex ? 'active' : ''}"
+          data-index="${index}"
+        >
+          ${premio.nome}
+        </button>
+      `).join('');
+
+      // Add click handlers
+      tabsNav.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const newIndex = parseInt(btn.dataset.index);
+          if (newIndex !== currentTabIndex && !isTransitioning) {
+            switchTab(newIndex);
+          }
+        });
+      });
+    }
+
+    function switchTab(newIndex) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      const oldIndex = currentTabIndex;
+      const contents = document.querySelectorAll('.tab-content');
+      const oldContent = contents[oldIndex];
+      const newContent = contents[newIndex];
+
+      // Update active tab button immediately
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === newIndex);
+      });
+
+      // Phase 1: Fade out current content
+      oldContent.classList.remove('active');
+      oldContent.classList.add('fade-out');
+
+      // Phase 2: After fade out, switch and fade in new content
+      setTimeout(() => {
+        oldContent.classList.remove('fade-out');
+        currentTabIndex = newIndex;
+        newContent.classList.add('fade-in');
+
+        // Phase 3: After fade in, clean up classes
+        setTimeout(() => {
+          newContent.classList.remove('fade-in');
+          newContent.classList.add('active');
+          isTransitioning = false;
+        }, 250);
+      }, 200);
+    }
+
+    function renderTabContent(resultado) {
+      const container = document.getElementById('tabs-content');
+      const { premios, edicao, bannerImagem, premiacaoImagem } = resultado;
+
+      container.innerHTML = premios.map((premio, index) => `
+        <div class="tab-content ${index === currentTabIndex ? 'active' : ''}" data-tab="${index}">
+          <!-- Main Layout: flex-col-reverse on mobile, flex-row on desktop -->
+          <div class="flex flex-col-reverse lg:flex-row gap-y-[24px] gap-x-[32px]">
+
+            <!-- Left Column (Desktop) / Bottom (Mobile): Prize + Dezenas -->
+            <div class="flex flex-col gap-[24px] lg:max-w-[385px] lg:w-[385px] shrink-0">
+              <!-- Prize Card -->
+              <div class="bg-white border border-border rounded-[24px] shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] px-[17px] py-[25px] flex flex-col gap-[16px]">
+                <!-- Header: Edition + Prize Name -->
+                <div class="flex items-center justify-between">
+                  <span class="bg-surface-muted text-label text-[12px] font-bold uppercase tracking-[1px] px-[7px] py-[3.5px] rounded-[3.5px]">Edição ${edicao}</span>
+                  <span class="text-primary text-[12px] font-bold uppercase">${premio.nome}</span>
+                </div>
+                <!-- Prize Image -->
+                <div class="w-full h-[178px] overflow-hidden">
+                  <img src="${premiacaoImagem}" alt="${premio.nome}" class="w-full h-full object-cover">
+                </div>
+                <!-- Value Box -->
+                <div class="bg-surface-light border border-border rounded-[10.5px] py-[17px] px-[17px] flex flex-col items-center justify-center gap-[3.5px]">
+                  <span class="text-muted text-[10.5px] font-bold uppercase tracking-[1.05px]">Valor Líquido</span>
+                  <span class="text-heading text-[26px] font-black tracking-[-0.65px]">${premio.valor}</span>
+                </div>
+              </div>
+
+              <!-- Dezenas Sorteadas -->
+              <div class="bg-white rounded-[24px] border border-border shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)] px-[17px] py-[25px]">
+                <div class="border-b border-border-light pb-[12px] mb-[16px]">
+                  <h3 class="text-[16px] font-bold text-heading">Dezenas Sorteadas</h3>
+                </div>
+
+                <div class="flex flex-wrap gap-[12px]">
+                  ${premio.dezenasSorteadas.map(dezena => `
+                    <div class="dezena-item">${String(dezena).padStart(2, '0')}</div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column (Desktop) / Top (Mobile): Contemplados -->
+            <div class="lg:flex-1">
+              <div class="bg-white border border-border rounded-[21px] shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] p-[25px] flex flex-col gap-[32px]">
+                <!-- Banner Image -->
+                <div class="w-full aspect-[749/315] rounded-[24px] overflow-hidden">
+                  <img src="${bannerImagem}" alt="Sorteio" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Contemplados Content -->
+                <div class="flex flex-col gap-[16px]">
+                  <!-- Header: Title + Badge -->
+                  <div class="flex items-center gap-[16px]">
+                    <h3 class="text-[20px] font-bold text-heading">Contemplados</h3>
+                    <span class="bg-[rgba(219,21,38,0.1)] border border-[rgba(219,21,38,0.12)] text-primary text-[10.5px] font-bold px-[11.5px] py-[4.5px] rounded-full">${premio.contemplados.length} Ganhador(es)</span>
+                  </div>
+
+                  <!-- Winner Cards -->
+                  ${premio.contemplados.map(contemplado => `
+                    <div class="bg-white border border-border rounded-[14px] p-[22px] relative overflow-hidden">
+                      <!-- Red left accent -->
+                      <div class="absolute left-0 top-0 bottom-0 w-[5px] bg-primary"></div>
+
+                      <!-- Card Content -->
+                      <div class="flex items-center gap-[12px]">
+                        <!-- Título Number -->
+                        <div class="flex flex-col items-center min-w-[100px]">
+                          <span class="text-muted text-[12px] font-bold uppercase">Título Nº</span>
+                          <span class="text-heading text-[16px] font-bold">${contemplado.numero}</span>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-px h-[42px] bg-surface-muted"></div>
+
+                        <!-- Winner Info -->
+                        <div class="flex-1 flex flex-col gap-[7px]">
+                          <p class="text-[16px] font-bold text-heading">${contemplado.nome}</p>
+                          <div class="flex flex-wrap gap-x-[21px] gap-y-[4px] text-[12px] font-medium text-subtle">
+                            <span class="flex items-center gap-[4px]">
+                              <svg class="w-[14px] h-[14px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                              </svg>
+                              ${contemplado.cidade || 'Natal/RN'}
+                            </span>
+                            <span class="flex items-center gap-[4px]">
+                              <span class="w-[14px] h-[14px] bg-border-muted rounded-full flex items-center justify-center text-[10px] font-bold text-subtle">P</span>
+                              PDV: ${contemplado.pdv || 'Aplicativo'}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', loadResultados);
+  </script>
+
+  <!-- Bottom Nav Animations -->
+  <script>
+    (function() {
+      const btn = document.querySelector('.nav-central-btn');
+      if (!btn) return;
+
+      function doBounce() {
+        btn.classList.add('bounce');
+        setTimeout(() => btn.classList.remove('bounce'), 700);
+      }
+
+      function triggerDoubleBounce() {
+        doBounce();
+        setTimeout(doBounce, 800);
+      }
+
+      setInterval(triggerDoubleBounce, 5000);
+      setTimeout(triggerDoubleBounce, 2000);
+    })();
+  </script>
+
+  <script>
+    (function() {
+      const logos = document.querySelectorAll('.logo-mobile, .logo-desktop');
+      if (!logos.length) return;
+
+      function doPulse() {
+        logos.forEach(logo => {
+          logo.classList.add('pulse');
+          setTimeout(() => logo.classList.remove('pulse'), 800);
+        });
+      }
+
+      setInterval(doPulse, 6000);
+      setTimeout(doPulse, 3000);
+    })();
+  </script>
+</body>
+</html>

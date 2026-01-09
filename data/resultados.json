@@ -1,0 +1,244 @@
+{
+  "resultados": [
+    {
+      "data": "2025-01-05",
+      "dataFormatada": "05/01/2025",
+      "pdfUrl": "https://natalcap.com.br/pdfs/resultado-05-01-2025.pdf",
+      "edicao": "145",
+      "bannerImagem": "../images/resultados/contemplados-image.png",
+      "premiacaoImagem": "../images/resultados/premiacao-image.png",
+      "premios": [
+        {
+          "id": "1",
+          "nome": "1° Premio",
+          "imagem": "images/resultados/premio-carro.png",
+          "valor": "R$ 120.000,00",
+          "descricaoPremio": "Seja de Sorte",
+          "contemplados": [
+            {
+              "nome": "Aldemir Pinheiro de Oliveira",
+              "numero": "200.265"
+            }
+          ],
+          "dezenasSorteadas": ["99", "24", "00", "05", "15", "33", "22", "37", "56", "53", "24", "59", "56", "02", "27", "17", "53", "57", "39", "31", "47", "04", "08", "32", "06", "47", "53", "24", "06", "75", "44", "48", "36", "36", "67", "74", "27", "56", "07", "26"]
+        },
+        {
+          "id": "2",
+          "nome": "2° Premio",
+          "imagem": "images/resultados/premio-moto.png",
+          "valor": "R$ 30.000,00",
+          "descricaoPremio": "Moto 0km",
+          "contemplados": [
+            {
+              "nome": "Maria das Gracas Silva",
+              "numero": "150.432"
+            }
+          ],
+          "dezenasSorteadas": ["12", "45", "78", "23", "56", "89", "34", "67", "90", "11", "44", "77", "22", "55", "88", "33", "66", "99", "10", "43", "76", "21", "54", "87", "32", "65", "98", "13", "46", "79", "24", "57", "80", "35", "68", "91", "14", "47", "70", "25"]
+        },
+        {
+          "id": "3",
+          "nome": "3° Premio",
+          "imagem": "images/resultados/premio-dinheiro.png",
+          "valor": "R$ 10.000,00",
+          "descricaoPremio": "Dinheiro",
+          "contemplados": [
+            {
+              "nome": "Jose Carlos Ferreira",
+              "numero": "089.765"
+            }
+          ],
+          "dezenasSorteadas": ["15", "48", "71", "26", "59", "82", "37", "60", "93", "18", "41", "74", "29", "52", "85", "30", "63", "96", "19", "42", "75", "20", "53", "86", "31", "64", "97", "12", "45", "78", "23", "56", "89", "34", "67", "90", "15", "48", "71", "26"]
+        },
+        {
+          "id": "4",
+          "nome": "4° Premio",
+          "imagem": "images/resultados/premio-dinheiro.png",
+          "valor": "R$ 5.000,00",
+          "descricaoPremio": "Dinheiro",
+          "contemplados": [
+            {
+              "nome": "Ana Paula Santos",
+              "numero": "234.567"
+            }
+          ],
+          "dezenasSorteadas": ["21", "54", "87", "32", "65", "98", "43", "76", "09", "24", "57", "80", "35", "68", "91", "46", "79", "02", "25", "58", "81", "36", "69", "92", "47", "70", "03", "28", "61", "94", "39", "62", "95", "40", "73", "06", "21", "54", "87", "32"]
+        },
+        {
+          "id": "sou-de-sorte",
+          "nome": "Sou de Sorte",
+          "imagem": "images/resultados/premio-sou-de-sorte.png",
+          "valor": "R$ 5.000,00",
+          "descricaoPremio": "Sou de Sorte",
+          "contemplados": [
+            {
+              "nome": "Roberto Lima Nascimento",
+              "numero": "345.678"
+            }
+          ],
+          "dezenasSorteadas": ["33", "66", "99", "44", "77", "00", "55", "88", "11", "36", "69", "02", "47", "70", "03", "58", "81", "14", "27", "60", "93", "38", "71", "04", "49", "72", "05", "30", "63", "96", "41", "74", "07", "52", "85", "18", "33", "66", "99", "44"]
+        }
+      ]
+    },
+    {
+      "data": "2024-12-29",
+      "dataFormatada": "29/12/2024",
+      "pdfUrl": "https://natalcap.com.br/pdfs/resultado-29-12-2024.pdf",
+      "edicao": "144",
+      "bannerImagem": "../images/resultados/contemplados-image.png",
+      "premiacaoImagem": "../images/resultados/premiacao-image.png",
+      "premios": [
+        {
+          "id": "1",
+          "nome": "1° Premio",
+          "imagem": "images/resultados/premio-carro.png",
+          "valor": "R$ 120.000,00",
+          "descricaoPremio": "Seja de Sorte",
+          "contemplados": [
+            {
+              "nome": "Francisco Silva Neto",
+              "numero": "156.890"
+            }
+          ],
+          "dezenasSorteadas": ["45", "12", "78", "34", "56", "90", "23", "67", "89", "01", "44", "77", "22", "55", "88", "33", "66", "99", "10", "43", "76", "21", "54", "87", "32", "65", "98", "13", "46", "79", "24", "57", "80", "35", "68", "91", "14", "47", "70", "25"]
+        },
+        {
+          "id": "2",
+          "nome": "2° Premio",
+          "imagem": "images/resultados/premio-moto.png",
+          "valor": "R$ 30.000,00",
+          "descricaoPremio": "Moto 0km",
+          "contemplados": [
+            {
+              "nome": "Joana Darc Almeida",
+              "numero": "267.543"
+            }
+          ],
+          "dezenasSorteadas": ["67", "90", "23", "56", "89", "12", "45", "78", "01", "34", "67", "00", "33", "66", "99", "22", "55", "88", "11", "44", "77", "10", "43", "76", "21", "54", "87", "20", "53", "86", "31", "64", "97", "30", "63", "96", "41", "74", "07", "52"]
+        },
+        {
+          "id": "3",
+          "nome": "3° Premio",
+          "imagem": "images/resultados/premio-dinheiro.png",
+          "valor": "R$ 10.000,00",
+          "descricaoPremio": "Dinheiro",
+          "contemplados": [
+            {
+              "nome": "Pedro Henrique Costa",
+              "numero": "098.234"
+            }
+          ],
+          "dezenasSorteadas": ["89", "12", "45", "78", "01", "34", "67", "90", "23", "56", "89", "22", "55", "88", "11", "44", "77", "00", "33", "66", "99", "32", "65", "98", "43", "76", "09", "42", "75", "08", "53", "86", "19", "52", "85", "18", "63", "96", "29", "74"]
+        },
+        {
+          "id": "4",
+          "nome": "4° Premio",
+          "imagem": "images/resultados/premio-dinheiro.png",
+          "valor": "R$ 5.000,00",
+          "descricaoPremio": "Dinheiro",
+          "contemplados": [
+            {
+              "nome": "Lucia Fernanda Rocha",
+              "numero": "312.456"
+            }
+          ],
+          "dezenasSorteadas": ["01", "34", "67", "90", "23", "56", "89", "12", "45", "78", "11", "44", "77", "00", "33", "66", "99", "22", "55", "88", "21", "54", "87", "10", "43", "76", "09", "32", "65", "98", "41", "74", "07", "40", "73", "06", "51", "84", "17", "62"]
+        },
+        {
+          "id": "sou-de-sorte",
+          "nome": "Sou de Sorte",
+          "imagem": "images/resultados/premio-sou-de-sorte.png",
+          "valor": "R$ 5.000,00",
+          "descricaoPremio": "Sou de Sorte",
+          "contemplados": [
+            {
+              "nome": "Carlos Eduardo Mendes",
+              "numero": "423.789"
+            }
+          ],
+          "dezenasSorteadas": ["23", "56", "89", "12", "45", "78", "01", "34", "67", "90", "33", "66", "99", "22", "55", "88", "11", "44", "77", "00", "43", "76", "09", "32", "65", "98", "21", "54", "87", "10", "63", "96", "29", "52", "85", "18", "73", "06", "39", "84"]
+        }
+      ]
+    },
+    {
+      "data": "2024-12-22",
+      "dataFormatada": "22/12/2024",
+      "pdfUrl": "https://natalcap.com.br/pdfs/resultado-22-12-2024.pdf",
+      "edicao": "143",
+      "bannerImagem": "../images/resultados/contemplados-image.png",
+      "premiacaoImagem": "../images/resultados/premiacao-image.png",
+      "premios": [
+        {
+          "id": "1",
+          "nome": "1° Premio",
+          "imagem": "images/resultados/premio-carro.png",
+          "valor": "R$ 120.000,00",
+          "descricaoPremio": "Seja de Sorte",
+          "contemplados": [
+            {
+              "nome": "Marcos Antonio Pereira",
+              "numero": "178.432"
+            }
+          ],
+          "dezenasSorteadas": ["78", "34", "56", "12", "90", "23", "67", "45", "89", "01", "66", "99", "22", "55", "88", "11", "44", "77", "00", "33", "98", "43", "76", "21", "54", "87", "10", "65", "32", "09", "07", "74", "41", "08", "75", "42", "19", "86", "53", "20"]
+        },
+        {
+          "id": "2",
+          "nome": "2° Premio",
+          "imagem": "images/resultados/premio-moto.png",
+          "valor": "R$ 30.000,00",
+          "descricaoPremio": "Moto 0km",
+          "contemplados": [
+            {
+              "nome": "Fernanda Cristina Souza",
+              "numero": "289.654"
+            }
+          ],
+          "dezenasSorteadas": ["34", "67", "90", "23", "56", "89", "12", "45", "78", "01", "99", "22", "55", "88", "11", "44", "77", "00", "33", "66", "76", "21", "54", "87", "10", "43", "98", "32", "65", "09", "74", "41", "08", "75", "42", "19", "86", "53", "20", "97"]
+        },
+        {
+          "id": "3",
+          "nome": "3° Premio",
+          "imagem": "images/resultados/premio-dinheiro.png",
+          "valor": "R$ 10.000,00",
+          "descricaoPremio": "Dinheiro",
+          "contemplados": [
+            {
+              "nome": "Ricardo Alves Junior",
+              "numero": "045.321"
+            }
+          ],
+          "dezenasSorteadas": ["56", "89", "12", "45", "78", "01", "34", "67", "90", "23", "22", "55", "88", "11", "44", "77", "00", "33", "66", "99", "54", "87", "10", "43", "76", "21", "98", "32", "65", "09", "41", "08", "75", "42", "19", "86", "53", "20", "97", "64"]
+        },
+        {
+          "id": "4",
+          "nome": "4° Premio",
+          "imagem": "images/resultados/premio-dinheiro.png",
+          "valor": "R$ 5.000,00",
+          "descricaoPremio": "Dinheiro",
+          "contemplados": [
+            {
+              "nome": "Patricia Lima Oliveira",
+              "numero": "356.987"
+            }
+          ],
+          "dezenasSorteadas": ["89", "12", "45", "78", "01", "34", "67", "90", "23", "56", "55", "88", "11", "44", "77", "00", "33", "66", "99", "22", "87", "10", "43", "76", "21", "54", "65", "09", "32", "98", "08", "75", "42", "19", "86", "53", "20", "97", "64", "31"]
+        },
+        {
+          "id": "sou-de-sorte",
+          "nome": "Sou de Sorte",
+          "imagem": "images/resultados/premio-sou-de-sorte.png",
+          "valor": "R$ 5.000,00",
+          "descricaoPremio": "Sou de Sorte",
+          "contemplados": [
+            {
+              "nome": "Bruno Felipe Santos",
+              "numero": "467.123"
+            }
+          ],
+          "dezenasSorteadas": ["12", "45", "78", "01", "34", "67", "90", "23", "56", "89", "88", "11", "44", "77", "00", "33", "66", "99", "22", "55", "10", "43", "76", "21", "54", "87", "09", "32", "65", "98", "75", "42", "19", "86", "53", "20", "97", "64", "31", "08"]
+        }
+      ]
+    }
+  ]
+}
