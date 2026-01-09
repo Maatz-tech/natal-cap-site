@@ -4,8 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../images/shared/logo-natalcap.png">
-  <meta name="description" content="Entre em contato com o Natal Cap.">
+  <meta name="description" content="Entre em contato com o Natal Cap. Tire suas dúvidas sobre títulos de capitalização e sorteios.">
   <title>Contato - Natal Cap</title>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://natalcap.com.br/contato/">
+  <meta property="og:title" content="Contato - Natal Cap">
+  <meta property="og:description" content="Entre em contato com o Natal Cap. Tire suas dúvidas sobre títulos de capitalização e sorteios.">
+  <meta property="og:image" content="https://natalcap.com.br/images/shared/logo-natalcap.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contato - Natal Cap">
+  <meta name="twitter:description" content="Entre em contato com o Natal Cap. Tire suas dúvidas sobre títulos de capitalização e sorteios.">
+  <meta name="twitter:image" content="https://natalcap.com.br/images/shared/logo-natalcap.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://natalcap.com.br/contato/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +34,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="../script/main.js"></script>
 </head>
-<body class="min-h-screen bg-white text-text-body overflow-x-hidden">
+<body class="min-h-screen bg-white text-body overflow-x-hidden">
 
   <!-- Mobile Menu Overlay -->
   <div id="mobile-menu" class="mobile-menu-overlay lg:hidden">
@@ -89,60 +105,17 @@
   <footer class="bg-bg-light pt-16 px-4 md:px-8 lg:px-[112px]">
     <div class="max-w-[1216px] mx-auto">
       <div class="border-t border-border-light py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <span class="text-xs text-text-body">© 2026 Natal Cap. Todos os direitos reservados.</span>
+        <span class="text-xs text-body">© 2026 Natal Cap. Todos os direitos reservados.</span>
         <div class="flex items-center gap-2.5">
-          <span class="text-xs text-text-body">Desenvolvido por</span>
-          <img src="../images/logo-maatz.png" alt="Maatz" class="h-6 w-auto">
+          <span class="text-xs text-body">Desenvolvido por</span>
+          <img src="../images/shared/maatz-logo.png" alt="Maatz" class="h-6 w-auto">
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="../script/animate.js"></script>
-
-  <!-- Mobile Menu Script -->
-  <script>
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-
-    function openMobileMenu() {
-      mobileMenu.classList.add('active');
-      document.body.classList.add('menu-open');
-    }
-
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('menu-open');
-    }
-
-    if (mobileMenuToggle) {
-      mobileMenuToggle.addEventListener('click', openMobileMenu);
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMobileMenu();
-    });
-  </script>
-
-  <!-- Logo Pulse Animation -->
-  <script>
-    (function() {
-      const logos = document.querySelectorAll('.logo-mobile, .logo-desktop');
-      if (!logos.length) return;
-
-      function doPulse() {
-        logos.forEach(logo => {
-          logo.classList.add('pulse');
-          setTimeout(() => logo.classList.remove('pulse'), 800);
-        });
-      }
-
-      // Dispara a cada 6 segundos
-      setInterval(doPulse, 6000);
-
-      // Dispara uma vez após 3 segundos do carregamento
-      setTimeout(doPulse, 3000);
-    })();
-  </script>
+  <script src="../script/global.js"></script>
 </body>
 </html>

@@ -7,6 +7,22 @@
   <meta name="description" content="Regulamento do Natal Cap - Conheça as regras e condições gerais.">
   <title>Regulamento - Natal Cap</title>
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://natalcap.com.br/regulamento/">
+  <meta property="og:title" content="Regulamento - Natal Cap">
+  <meta property="og:description" content="Conheça as regras e condições gerais do Natal Cap.">
+  <meta property="og:image" content="https://natalcap.com.br/images/shared/logo-natalcap.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Regulamento - Natal Cap">
+  <meta name="twitter:description" content="Conheça as regras e condições gerais do Natal Cap.">
+  <meta name="twitter:image" content="https://natalcap.com.br/images/shared/logo-natalcap.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://natalcap.com.br/regulamento/">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -404,149 +420,10 @@
     </div>
   </nav>
 
-  <!-- Animation Script -->
+  <!-- Scripts -->
   <script src="../script/animate.js"></script>
-
-  <!-- Mobile Menu Script -->
-  <script>
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-
-    function openMobileMenu() {
-      mobileMenu.classList.add('active');
-      document.body.classList.add('menu-open');
-    }
-
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('menu-open');
-    }
-
-    if (mobileMenuToggle) {
-      mobileMenuToggle.addEventListener('click', openMobileMenu);
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMobileMenu();
-    });
-  </script>
-
-  <!-- Accordion Script -->
-  <script>
-    function toggleAccordion(button) {
-      const content = button.nextElementSibling;
-      const icon = button.querySelector('.accordion-icon');
-      const isOpen = content.classList.contains('open');
-
-      if (isOpen) {
-        // Fechando: primeiro define o max-height atual, depois anima para 0
-        content.style.maxHeight = content.scrollHeight + 'px';
-        requestAnimationFrame(() => {
-          content.style.maxHeight = '0';
-        });
-        content.classList.remove('open');
-        icon.classList.remove('open');
-      } else {
-        // Abrindo: anima para o scrollHeight real
-        content.classList.add('open');
-        icon.classList.add('open');
-        content.style.maxHeight = content.scrollHeight + 'px';
-
-        // Remove o max-height inline após a transição para permitir resize
-        content.addEventListener('transitionend', function handler() {
-          if (content.classList.contains('open')) {
-            content.style.maxHeight = 'none';
-          }
-          content.removeEventListener('transitionend', handler);
-        });
-      }
-    }
-  </script>
-
-  <!-- Botão Central Bounce Animation -->
-  <script>
-    (function() {
-      const btn = document.querySelector('.nav-central-btn');
-      if (!btn) return;
-
-      function doBounce() {
-        btn.classList.add('bounce');
-        setTimeout(() => btn.classList.remove('bounce'), 700);
-      }
-
-      function triggerDoubleBounce() {
-        doBounce();
-        setTimeout(doBounce, 800);
-      }
-
-      setInterval(triggerDoubleBounce, 5000);
-      setTimeout(triggerDoubleBounce, 2000);
-    })();
-  </script>
-
-  <!-- Logo Pulse Animation -->
-  <script>
-    (function() {
-      const logos = document.querySelectorAll('.logo-mobile, .logo-desktop');
-      if (!logos.length) return;
-
-      function doPulse() {
-        logos.forEach(logo => {
-          logo.classList.add('pulse');
-          setTimeout(() => logo.classList.remove('pulse'), 800);
-        });
-      }
-
-      // Dispara a cada 6 segundos
-      setInterval(doPulse, 6000);
-
-      // Dispara uma vez após 3 segundos do carregamento
-      setTimeout(doPulse, 3000);
-    })();
-  </script>
-
-  <!-- Dynamic Regulamento Config Loader -->
-  <script>
-    (function() {
-      fetch('../data/regulamento.json')
-        .then(response => response.json())
-        .then(config => {
-          const linkIcon = `<svg class="w-[14px] h-[14px] text-[#7b7d84] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>`;
-
-          function createLinkElement(item) {
-            const a = document.createElement('a');
-            a.href = item.pdf || '#';
-            if (item.pdf) {
-              a.target = '_blank';
-              a.rel = 'noopener noreferrer';
-            }
-            a.className = 'bg-white border border-[#e5e5e6] rounded-[7px] p-[13px] lg:py-[9px] lg:px-[17px] flex items-center justify-between hover:border-[#db1526] transition-colors';
-            a.innerHTML = `<span class="text-[14px] font-bold text-[#19191a] leading-[1.6]">${item.codigo}</span>${linkIcon}`;
-            return a;
-          }
-
-          // Condições Gerais
-          const condicoesContainer = document.getElementById('condicoes-gerais-links');
-          if (condicoesContainer && config.condicoesGerais) {
-            config.condicoesGerais.forEach(item => {
-              condicoesContainer.appendChild(createLinkElement(item));
-            });
-          }
-
-          // Sorteio Extra
-          const sorteioContainer = document.getElementById('sorteio-extra-links');
-          if (sorteioContainer && config.sorteioExtra) {
-            config.sorteioExtra.forEach(item => {
-              sorteioContainer.appendChild(createLinkElement(item));
-            });
-          }
-        })
-        .catch(err => console.warn('Regulamento config not loaded:', err));
-    })();
-  </script>
+  <script src="../script/global.js"></script>
+  <script src="../script/accordion.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
