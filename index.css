@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Home Page Specific Styles
+   ========================================================================== */
+
+/* Video Card
+   ========================================================================== */
+.video-card {
+  overflow: hidden;
+}
+
+.video-card img {
+  transition: transform 0.4s ease;
+}
+
+.video-card:hover img {
+  transform: scale(1.05);
+}
+
+.video-card:hover .btn-play {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Play Button
+   ========================================================================== */
+.btn-play {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-thumb {
+  cursor: pointer;
+}
+
+/* Video Lightbox
+   ========================================================================== */
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-lightbox-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 16/9;
+}
+
+.video-lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.video-lightbox-close:hover {
+  transform: scale(1.1);
+}

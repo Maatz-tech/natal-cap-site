@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Termos Page Specific Styles
+   ========================================================================== */
+
+/* Accordion (same as regulamento)
+   ========================================================================== */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out;
+}
+
+.accordion-btn {
+  transition: background-color 0.2s ease;
+}
+
+.accordion-btn:hover {
+  background-color: var(--color-surface-light);
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Content Text Styles
+   ========================================================================== */
+.content-text p {
+  margin-bottom: 16px;
+}
+
+.content-text ul,
+.content-text ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.content-text ul {
+  list-style-type: disc;
+}
+
+.content-text ol {
+  list-style-type: decimal;
+}
+
+.content-text li {
+  margin-bottom: 8px;
+}
+
+.content-text a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.content-text a:hover {
+  text-decoration: none;
+}

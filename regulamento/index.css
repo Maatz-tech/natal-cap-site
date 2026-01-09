@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Regulamento Page Specific Styles
+   ========================================================================== */
+
+/* Accordion
+   ========================================================================== */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out;
+}
+
+.accordion-btn {
+  transition: background-color 0.2s ease;
+}
+
+.accordion-btn:hover {
+  background-color: var(--color-surface-light);
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion-icon.open {
+  transform: rotate(180deg);
+}

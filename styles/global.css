@@ -1,0 +1,284 @@
+/* ==========================================================================
+   Natal Cap - Global Styles
+   ========================================================================== */
+
+/* CSS Variables - Design System
+   ========================================================================== */
+:root {
+  /* Brand colors */
+  --color-primary: #db1526;
+  --color-primary-dark: #8a0900;
+  --color-secondary: #fcc200;
+  --color-secondary-dark: #fc9700;
+
+  /* Text colors */
+  --color-heading: #19191a;
+  --color-body: #7b7d84;
+  --color-muted: #9ca3af;
+  --color-subtle: #797979;
+  --color-label: #6b7280;
+
+  /* Surface/Background colors */
+  --color-surface-white: #ffffff;
+  --color-surface-light: #f9fafb;
+  --color-surface-muted: #f3f4f6;
+  --color-surface-gray: #f5f5f5;
+
+  /* Border colors */
+  --color-border: #e5e5e6;
+  --color-border-light: #f3f4f6;
+  --color-border-muted: #e5e7eb;
+}
+
+/* Base Styles
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Figtree', sans-serif;
+}
+
+/* Animations
+   ========================================================================== */
+
+/* Fade In (from bottom) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In from Left */
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade In from Right */
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale In */
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Transition Delays */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
+/* Buttons
+   ========================================================================== */
+
+/* Primary Button */
+.btn-primary {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(219, 21, 38, 0.3);
+}
+
+/* Store Button (App Store/Google Play) */
+.btn-store {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-store:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass Effects
+   ========================================================================== */
+
+/* Standard Glass */
+.glass {
+  backdrop-filter: blur(21.9px);
+  -webkit-backdrop-filter: blur(21.9px);
+  background: rgba(255, 255, 255, 0.17);
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* Glass Variant 2 (more opaque) */
+.glass-2 {
+  backdrop-filter: blur(21.9px);
+  -webkit-backdrop-filter: blur(21.9px);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* Glass Card (for cards) */
+.glass-card {
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(166, 163, 163, 0);
+}
+
+/* Glass Border Gradient (white) */
+.glass-border-gradient {
+  position: relative;
+}
+
+.glass-border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glass Border Gradient (grey) */
+.glass-border-gradient-grey {
+  position: relative;
+  border: none !important;
+}
+
+.glass-border-gradient-grey::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(221, 221, 221, 0) 0%, rgba(221, 221, 221, 0.3) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glass Border Gradient Grey - Thicker variant */
+.glass-border-gradient-grey-2::before {
+  padding: 2px;
+}
+
+/* Decorative Elements
+   ========================================================================== */
+
+/* Gradient Line (footer separator) */
+.gradient-line {
+  background: linear-gradient(90deg, var(--color-primary), #fde047 50%, var(--color-primary));
+}
+
+/* Parallax Card Effect */
+.parallax-card {
+  transition: transform 0.1s ease-out;
+}
+
+/* Mobile Menu
+   ========================================================================== */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-overlay.active .mobile-menu-content {
+  transform: translateY(0);
+}
+
+.mobile-menu-content {
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Bottom Navigation
+   ========================================================================== */
+.nav-central-wrapper {
+  transition: transform 0.2s ease;
+}
+
+.nav-central-btn {
+  transition: box-shadow 0.2s ease;
+}
+
+.nav-central-label {
+  transition: color 0.2s ease;
+}
+
+.nav-central-wrapper:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.nav-central-wrapper:hover .nav-central-btn {
+  box-shadow: 0 8px 24px rgba(219, 21, 38, 0.4);
+}
+
+.nav-central-wrapper:hover .nav-central-label {
+  color: var(--color-primary);
+}
+
+/* Bounce Animation (Bottom Nav Button) */
+@keyframes bounce-attention {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+  50% { transform: translateY(0); }
+  70% { transform: translateY(-5px); }
+  85% { transform: translateY(0); }
+}
+
+.nav-central-btn.bounce {
+  animation: bounce-attention 0.7s ease-in-out;
+}
+
+/* Logo Pulse Animation
+   ========================================================================== */
+@keyframes pulse-attention {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.logo-mobile.pulse,
+.logo-desktop.pulse {
+  animation: pulse-attention 0.8s ease-in-out;
+}
